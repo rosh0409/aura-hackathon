@@ -6,9 +6,12 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import KeyOutlinedIcon from "@mui/icons-material/KeyOutlined";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { authActions } from "../store";
 
 const Login_ = () => {
+  const disptach = useDispatch();
   const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
@@ -38,6 +41,7 @@ const Login_ = () => {
           duration: 4000,
           position: "bottom-right",
         });
+        disptach(authActions.login());
         navigate("/dashboard");
       } else {
         toast.dismiss(toastId);
@@ -60,9 +64,9 @@ const Login_ = () => {
     });
   };
   return (
-    <main className="flex h-screen overflow-y-hidden">
+    <main className="flex h-screen overflow-x-hidden">
       <Sidebar />
-      <div className="w-screen flex flex-col items-center">
+      <div className="w-screen lg:w-2/3 flex flex-col items-center">
         <h1 className="text-3xl my-12 mx-20">Login</h1>
 
         {/* User details form */}
@@ -96,7 +100,7 @@ const Login_ = () => {
               }
             />
           </div>
-          <div className="my-10 flex justify-center">
+          <div className="mt-10 ">
             <button
               className="text-lg bg-lime-300 px-4 py-1  rounded-md"
               onClick={handleSignin}

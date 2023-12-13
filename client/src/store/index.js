@@ -28,7 +28,7 @@ const userSlice = createSlice({
   },
 });
 
-export const userAccActions = userAccSlice.actions;
+export const userActions = userSlice.actions;
 export const authActions = authSlice.actions;
 
 export const store = configureStore({
