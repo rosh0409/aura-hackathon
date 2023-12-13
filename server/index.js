@@ -5,6 +5,8 @@ import cookieParser from "cookie-parser";
 import cors from "cors";
 import { UserRoutes } from "./routes/userRoutes.js";
 import { ExpenseRoutes } from "./routes/expenseRoutes.js"
+import dotenv from 'dotenv'
+dotenv.config()
 
 const app = express();
 app.use(cookieParser());

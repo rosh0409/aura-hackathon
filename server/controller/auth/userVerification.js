@@ -10,7 +10,7 @@ export const UserVerification = async (req, res, next) => {
     }
     // console.log("token :: ", req.headers?.cookie.split("=")[1]);
     const token = req.headers?.cookie.split("=")[1];
-    const decode = jwt.verify(token, "qwertyuiop", (err, user) => {
+    const decode = jwt.verify(token, process.env.JWTSECRETKEY , (err, user) => {
       if (err) {
         return res.status(400).json({
           status: "failed",
