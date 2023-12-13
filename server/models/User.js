@@ -1,30 +1,47 @@
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 
-const UserS = new mongoose.Schema({
-    name:{
-        type:String,
-        required:true
+const UserS = new mongoose.Schema(
+  {
+    name: {
+      type: String,
+      required: true,
     },
-    email:{
-        type:String,
-        required:true,
-        unique:true
+    email: {
+      type: String,
+      required: true,
+      unique: true,
     },
-    password:{
-        type:String,
-        required:true
+    password: {
+      type: String,
+      required: true,
     },
-    gender:{
-        type:String,
-        required:true
+    gender: {
+      type: String,
+      required: true,
     },
-    income:[],
-    budget:[],
-    expense:[]
-},
-{
-    timestamps:true
-}
-)
+    income: [],
+    budget: [],
+    expense: [],
+  },
+  {
+    timestamps: true,
+  }
+);
 
-module.exports = mongoose.model('user',UserS)
+UserS.pre("save", async function (next) {
+  try {
+    if (!this.isModified("password")) {
+      return next();
+    }
+    // hash paaword
+    const salt = await bcryptjs.genSalt(10);
+    const hashPass = await bcryptjs.hash(this.password, salt);
+    console.log(hashPass);
+    this.password = hashPass;
+    next();
+  } catch (error) {
+    console.log(error.message);
+  }
+});
+
+module.exports = mongoose.model("user", UserS);
