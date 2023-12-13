@@ -1,12 +1,10 @@
-// import { Grid } from "@mui/material";
+
+import AddExpense from '../pages/AddExpense';
 import React from "react";
 import SideNav from "./SideNav";
 import { Route, Routes } from "react-router-dom";
 import Feed from "./Feed";
 import styled from "@emotion/styled";
-// import Community from "../pages/Community";
-import AddExpense from "../pages/AddExpense";
-import AddBudget from "../pages/AddBudget";
 
 const Dash = styled.div({
   display: "flex",
@@ -29,13 +27,22 @@ const Right = styled.div({
 const Dashboard = () => {
   return (
     <Dash>
+  {/* //   <Side>
+  // <SideNav/>
+  //   </Side>
+  //   <Right>
+  //  <Routes>
+  //   <Route path="/home" element={<Feed />} />
+  //   <Route path="/addexp" element={<AddExpense />} />
+  //  </Routes>
+  //   </Right> */}
       <Side>
         <SideNav />
       </Side>
       <Right>
         <Routes>
           <Route path="/home" element={<Feed />} />
-          <Route path="/addexp" element={<AddExpense />} />
+          <Route path="/addexpense" element={<AddExpense />} />
           <Route exact path="/addbudget" element={<AddBudget/>}/>
         </Routes>
       </Right>

@@ -64,12 +64,13 @@ export const saveExpense = async (req, res) => {
     const format_date = Date(date)
 
     // console.log(Date())
+    const int_amount = Number(amount)
     //! Storing the expense info into the database
     user.expense.push(
       {
         category,
         expName,
-        amount,
+        amount:int_amount,
         format_date //! date object
       }
     )
