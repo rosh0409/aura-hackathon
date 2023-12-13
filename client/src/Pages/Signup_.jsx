@@ -28,6 +28,18 @@ const Signup_ = () => {
   const handleSignup = async() => {
     const toastId = toast.loading("Loading...");
     if (user.name && user.email && user.password && user.confPass && user.gender) {
+      if (
+        !/^[A-Za-z0-9](([a-zA-Z0-9,=\.!\-#|\$%\^&\*\+/\?_`\{\}~]+)*)@(?:[0-9a-zA-Z-]+\.)+[a-zA-Z]{2,9}$/.test(
+          user.email
+        )
+      ) {
+        toast.dismiss(toastId);
+        setUser({ ...user, email: "" });
+        return toast.error("please enter a valid email", {
+          duration: 4000,
+          position: "top-right",
+        });
+      }
       if (user.password === user.confPass) {
         if (user.password.length >= 8 && user.password.length <= 15) {
           if (
