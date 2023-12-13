@@ -37,6 +37,12 @@ export const saveExpense = async (req, res) => {
     //! fetching all the values from the body of the request
     const { category, expName, amount, date } = req.body;
 
+    if( !(category&& expName&& amount&& date) ){
+      return res.status(400).json({
+        status:"failed",
+        message:"Please fill all the details :-("
+      })
+    }
     //! when this route is called first a middle ware --> userVerification is called
     //! which verifies from the headers if the cookie is present or not and check if it is valid
 
@@ -47,8 +53,8 @@ export const saveExpense = async (req, res) => {
     console.log(user)
     if (!user) {
       return res.status(200).json({
-        status: "Unsuccess",
-        message: "No user found"
+        status:"failed",
+        message:"No user found"
       })
     }
     //!converting the string into the Date object

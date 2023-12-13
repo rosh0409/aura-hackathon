@@ -25,18 +25,33 @@ const Signup = () => {
     confPass: "",
   });
 
-  const handleSignup = async() => {
+  const handleSignup = async () => {
     const toastId = toast.loading("Loading...");
-    if (user.name && user.email && user.password && user.confPass && user.gender) {
+    if (
+      user.name &&
+      user.email &&
+      user.password &&
+      user.confPass &&
+      user.gender
+    ) {
+      if (
+        !/^[A-Za-z0-9](([a-zA-Z0-9,=\.!\-#|\$%\^&\*\+/\?_`\{\}~]+)*)@(?:[0-9a-zA-Z-]+\.)+[a-zA-Z]{2,9}$/.test(
+          user.email
+        )
+      ) {
+        toast.dismiss(toastId);
+        setUser({ ...user, email: "" });
+        return toast.error("please enter a valid email", {
+          duration: 4000,
+          position: "top-right",
+        });
+      }
       if (user.password === user.confPass) {
         if (user.password.length >= 8 && user.password.length <= 15) {
           if (
             /^(?=.*\d)(?=.*[A-Z])(?!.*[^a-zA-Z0-9@#$^+=])/.test(user.password)
           ) {
-            const { data } = await axios.post(
-              "/api/user/signup",
-              user
-            );
+            const { data } = await axios.post("/api/user/signup", user);
             if (data.status === "success") {
               toast.dismiss(toastId);
               toast.success(data.message, {
@@ -124,6 +139,7 @@ const Signup = () => {
               id="input-with-sx"
               label="Email"
               name="email"
+              type="email"
               value={user.email}
               onChange={(e) =>
                 setUser({ ...user, [e.target.name]: e.target.value })
