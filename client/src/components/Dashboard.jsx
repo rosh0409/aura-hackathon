@@ -35,7 +35,7 @@ const Dashboard = () => {
       <Right>
         <Routes>
           <Route path="/home" element={<Feed />} />
-          <Route path="/addexp" element={<AddExpense />} />
+          <Route path="/addexpense" element={<AddExpense />} />
           <Route exact path="/addbudget" element={<AddBudget/>}/>
         </Routes>
       </Right>
