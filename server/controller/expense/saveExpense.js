@@ -30,18 +30,44 @@ export const saveExpense = async (req, res) => {
     //!converting the string into the Date object
     const format_date = Date(date) 
 
-    console.log(Date())
-
+    // console.log(Date())
     //! Storing the expense info into the database
     user.expense.push(
         { 
-            category, 
-            expName, 
-            amount, 
-            format_date //! date object
+          category, 
+          expName, 
+          amount, 
+          format_date //! date object
         }
     )
     user.save()
+    const expense = user.expense
+    console.log(expense)
+    var total_expense = 0
+    for(let i in expense){
+      if(expense[i].category == category){
+        total_expense = total_expense + expense[i].amount
+      }
+    }
+
+    const budget = user.budget
+    var budget_amount = 0;
+    for(let i in budget){
+      if(budget[i].category == category){
+        budget_amount = budget_amount + budget[i].amount
+      }
+    }
+
+    if(total_expense >= budget_amount){
+      const message = "You have exceeded your budget"
+    console.log(total_expense+" "+budget_amount+" "+ message)
+
+    }else if(budget_amount - total_expense <= 0.1*budget_amount){
+      const message = `You have used more than 90% of your budget for ${category}`
+    console.log(message)
+
+    }
+
     return res.status(200).json({
         "response":req.body
     })    
