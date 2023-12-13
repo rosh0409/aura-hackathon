@@ -19,13 +19,34 @@ axios.defaults.baseURL = "http://localhost:8000";
 
 const Signup_ = () => {
   let navigate = useNavigate();
+  const [file, setFile] = useState();
   const [user, setUser] = useState({
     name: "",
     email: "",
     gender: "",
     password: "",
     confPass: "",
+    profile: new File([], ""),
   });
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
+
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+
+  const onUpload = async (e) => {
+    const base64 = await convertToBase64(e.target.files[0]);
+    setFile(base64);
+    setUser({ ...user, [e.target.name]: e.target.files[0] });
+  };
 
   const handleSignup = async () => {
     const toastId = toast.loading("Loading...");
@@ -34,7 +55,8 @@ const Signup_ = () => {
       user.email &&
       user.password &&
       user.confPass &&
-      user.gender
+      user.gender &&
+      user.profile
     ) {
       if (
         // eslint-disable-next-line
@@ -54,7 +76,17 @@ const Signup_ = () => {
           if (
             /^(?=.*\d)(?=.*[A-Z])(?!.*[^a-zA-Z0-9@#$^+=])/.test(user.password)
           ) {
-            const { data } = await axios.post("/api/user/signup", user);
+            const formdata = new FormData();
+            formdata.append("profile", user.profile);
+            formdata.append("name", user.name);
+            formdata.append("email", user.email);
+            formdata.append("password", user.password);
+            formdata.append("confPass", user.confPass);
+            formdata.append("gender", user.gender);
+
+            const { data } = await axios.post("/api/user/signup", formdata, {
+              headers: { "Content-Type": "multipart/form-data" },
+            });
             if (data.status === "success") {
               toast.dismiss(toastId);
               toast.success(data.message, {
@@ -124,7 +156,7 @@ const Signup_ = () => {
             <label className="l" htmlFor="profile">
               <img
                 className="user_img"
-                src={defaultavatar}
+                src={file ? file : defaultavatar}
                 alt=""
                 style={{ alignSelf: "center" }}
               />
@@ -135,7 +167,7 @@ const Signup_ = () => {
               id="profile"
               name="profile"
               type="file"
-              // onChange={onUpload}
+              onChange={onUpload}
               style={{ display: "none" }}
             />
           </div>
