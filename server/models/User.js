@@ -35,6 +35,7 @@ UserS.pre("save", async function (next) {
       return next();
     }
     // hash paaword
+    console.log("1");
     const salt = await bcryptjs.genSalt(10);
     const hashPass = await bcryptjs.hash(this.password, salt);
     console.log(hashPass);
