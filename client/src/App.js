@@ -14,7 +14,7 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        <Dashboard />
+        {/* <Dashboard /> */}
         <Routes>
           <Route exact path={"/signup"} element={<Signup />} />
           <Route exact path={"/signin"} element={<Login />} />
