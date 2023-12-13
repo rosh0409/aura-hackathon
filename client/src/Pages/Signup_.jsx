@@ -260,6 +260,9 @@ const Signup_ = () => {
               variant="outlined"
               className="w-4/5"
             />
+            <p className="text-gray-600 text-xs mt-1">
+              Must contain 1 uppercase letter, 1 number, min. 8 characters.
+            </p>
           </div>
           <div className="my-8">
             <button
