@@ -5,8 +5,8 @@ import Users from "../../models/User.js";
 export const saveBudget = async (req, res) => {
   try {
     //! fetching all the values from the body of the request
-    const { category, budName, amount, date } = req.body;
-    if (!(category && budName && amount && date)) {
+    const { category, budName, amount, date, duration } = req.body;
+    if (!(category && budName && amount && date && duration)) {
       return res.status(400).json({
         status: "failed",
         message: "Please fill all the details :-(",
@@ -26,17 +26,18 @@ export const saveBudget = async (req, res) => {
         message: "No user found",
       });
     }
-    //!converting the string into the Date object
-    const format_date = Date(date);
+    // //!converting the string into the Date object
+    // const format_date = Date(date);
 
-    console.log(Date());
-
+    console.log(Date(date));
+    const int_amount = Number(amount);
     //! Storing the expense info into the database
     const budget = user.budget.push({
       category,
       budName,
-      amount,
-      format_date, //! date object
+      amount: int_amount,
+      duration,
+      date, //! date object
     });
     user.save();
     return res.status(200).json({
