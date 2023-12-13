@@ -44,4 +44,4 @@ UserS.pre("save", async function (next) {
   }
 });
 
-module.exports = mongoose.model("user", UserS);
+export default mongoose.model("user", UserS);
