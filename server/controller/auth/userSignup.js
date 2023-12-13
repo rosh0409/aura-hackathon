@@ -1,5 +1,7 @@
 import Users from "../../models/User.js";
+// import { uniquefile } from "../controller/auth/uploadImage.js";
 
+// console.log(uniquefile);
 export const UserSignup = async (req, res) => {
   try {
     //destructuring the body

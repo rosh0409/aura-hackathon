@@ -12,18 +12,18 @@ UserRoutes.get("/", (req, res) => {
   res.send("hiii");
 });
 
-// UserRoutes.post("/verify-user", userVerification);
+const upload = multer({ storage: storage });
+
 //! All user routes
 
 //! All get request
 UserRoutes.get("/verify-user", UserVerification);
 
 //! All post request
-UserRoutes.post("/signup", UserSignup);
+UserRoutes.post("/signup", upload.single("profile"), UserSignup);
 UserRoutes.post("/signin", UserSignin);
 UserRoutes.post("/logout", userLogout);
 
-const upload = multer({ storage: storage });
 UserRoutes.post("/image", upload.single("profile"), (req, res) => {
   res.send("hii");
 });
