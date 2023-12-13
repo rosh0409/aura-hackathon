@@ -8,7 +8,7 @@ import { Grid } from '@mui/material';
 
 // import SearchIcon from '@mui/icons-material/Search';
 import {useNavigate} from "react-router-dom";
-import Community from '../Pages/Community';
+import Community from '../pages/Community';
 
 
 

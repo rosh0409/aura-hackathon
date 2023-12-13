@@ -1,4 +1,4 @@
-import { Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Menu, MenuItem, Switch, Typography } from '@mui/material'
+import { Avatar, Box, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Menu, MenuItem, Switch, Typography } from '@mui/material'
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom';
 import HomeIcon from '@mui/icons-material/Home';
@@ -16,7 +16,7 @@ import styled from '@emotion/styled';
 const Profile=styled.div({
   display:'flex',
   justifyContent:'center',
- padding:'20px'
+ padding:'20px',
 });
 
 const linkStyle = {
@@ -42,13 +42,20 @@ const [open,setOpen]=useState(false);
         <div style={{
             width:'100px',
             height:'100px',
-            backgroundColor:'red',
             borderRadius:'50%',
-            position:'fixed'
+            position:'fixed',
+            left:'60px',
+           border:'4px solid black'
         }}
         onClick={()=>{setOpen(true)}}   
         >
-
+ <Avatar onClick={()=>setOpen(true)} 
+sx={{
+  width:'100%',
+  height:'100%'
+}}
+src='https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1'
+/>
         </div>
         <Menu   
         id="demo-positioned-menu"
@@ -88,7 +95,7 @@ const [open,setOpen]=useState(false);
             </ListItem>
         </List>
         </Link>
-        <Typography variant='p' sx={{position:"relative",float:"left"}}>Inventory</Typography>
+      
         <List>
       <ListItem disablePadding>
         <Link to="/addexp" style={linkStyle}>
@@ -113,7 +120,7 @@ const [open,setOpen]=useState(false);
             </ListItem>
         </List>
         </Link>
-        <Typography variant='p' sx={{position:"relative",float:"left"}}>Data</Typography>
+       
         <Link to={"/role"} style={linkStyle}>
         <List>
             <ListItem disablePadding>
@@ -138,7 +145,7 @@ const [open,setOpen]=useState(false);
             </ListItem>
         </List>
         </Link>
-        <Typography variant='p' sx={{position:"relative",float:"left"}}>Analysis Graph</Typography>
+       
         <Link to={"/bar"} style={linkStyle}>
         <List>
             <ListItem disablePadding>

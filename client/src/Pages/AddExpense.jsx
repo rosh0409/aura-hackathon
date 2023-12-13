@@ -4,8 +4,19 @@ import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
 import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
 import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
 import { DatePicker } from '@mui/x-date-pickers/DatePicker';
+import { styled } from 'styled-components';
+import { motion } from 'framer-motion';
 
 
+const H1=styled.h1({
+  fontSize:'30px',
+  WebkitTextStroke:'0.1px white',
+  fontWeight:'900',
+  textShadow:'2px 2px #e7eceg',
+  '@media (max-width:700px)':{
+    fontSize:'20px'
+  }
+})
 
 const AddExpense = () => {
   const [inputValue, setInputValue] = useState('');
@@ -50,9 +61,16 @@ const AddExpense = () => {
     flexDirection:'column',
     justifyContent:'center',
     alignItems:'center',
-    height:'100%'
+    height:'100%',
+    padding:'10px'
   }}>
-    <h1>Add Expense Details</h1>
+   <motion.div 
+   initial={{opacity:0,scale:0}}
+   animate={{opacity:1,scale:1}}
+   transition={{duration:1}}
+   >
+   <H1>Add Expense Details</H1>
+   </motion.div>
   <Box sx={{
    width:'100%',
    height:'100%',
@@ -61,13 +79,20 @@ const AddExpense = () => {
    alignItems:'center'
   }}>
   
-    <Box sx={{
+    <motion.div
+    initial={{opacity:0,width:0}}
+    animate={{opacity:1,width:'50%'}}
+    transition={{duration:1}}
+    style={{
       width:'50%',
-      height:'60%',
+      height:'80%',
       background:'white',
       padding:'60px',
       borderRadius:'20px',
-  
+      '@media (max-width:700px)':{
+        width:"100%",
+        fontSize:'10px'
+      }
     }}>
     
     <form onSubmit={submitHandler}>
@@ -77,12 +102,23 @@ const AddExpense = () => {
           variant="outlined"
           value={inputValue}
           onChange={handleInputChange}
+          sx={{
+            '@media (max-width:700px)':{
+              width:"80%",
+              fontSize:'10px'
+            }
+          }}
         />
           <TextField
           label="Expense Amount"
           variant="outlined"
           value={inputValue2}
           onChange={handleInputChange2}
+          sx={{
+            '@media (max-width:700px)':{
+              width:"80%"
+            }
+          }}
         />
 
         <FormControl variant="outlined" style={{ marginTop: '20px' }}>
@@ -92,6 +128,11 @@ const AddExpense = () => {
             labelId="select-label"
             value={selectValue}
             onChange={handleSelectChange}
+            sx={{
+              '@media (max-width:700px)':{
+                width:"80%"
+              }
+            }}
           >
             <MenuItem value="option1">Education</MenuItem>
             <MenuItem value="option2">Vacation</MenuItem>
@@ -108,7 +149,7 @@ const AddExpense = () => {
 
         {/* install this---> npm install @mui/x-date-pickers
  */}
-      <LocalizationProvider dateAdapter={AdapterDayjs}>
+      <LocalizationProvider dateAdapter={AdapterDayjs} >
       <DemoContainer components={['DatePicker']}>
         <DatePicker label="Choose Date" />
       </DemoContainer>
@@ -122,7 +163,7 @@ const AddExpense = () => {
         </Stack>
       </form>
 
-    </Box>
+    </motion.div>
 
   </Box>
   </Box>

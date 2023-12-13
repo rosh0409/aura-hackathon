@@ -4,8 +4,8 @@ import SideNav from './SideNav'
 import { Route, Routes } from 'react-router-dom'
 import Feed from './Feed'
 import styled from '@emotion/styled';
-import Community from '../Pages/Community'
-import AddExpense from '../Pages/AddExpense'
+import Community from '../pages/Community';
+import AddExpense from '../pages/AddExpense';
 
 const Dash=styled.div({
     display: "flex",
@@ -34,7 +34,6 @@ const Dashboard = () => {
     </Side>
     <Right>
    <Routes>
-    <Route path="/home" element={<Feed />} />
     <Route path="/home" element={<Feed />} />
     <Route path="/addexp" element={<AddExpense />} />
    </Routes>
