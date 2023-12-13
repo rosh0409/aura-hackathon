@@ -20,10 +20,6 @@ const UserS = new mongoose.Schema(
       type: String,
       required: true,
     },
-    isExpert:{
-      type:Boolean,
-      default:false
-    },
     income: [],
     budget: [],
     expense: [],
