@@ -9,6 +9,7 @@ import FormLabel from "@mui/material/FormLabel";
 import Sidebar from "../components/Sidebar";
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import KeyOutlinedIcon from '@mui/icons-material/KeyOutlined';
 
 const Signup = () => {
   const [details, setDetails] = useState({
@@ -77,7 +78,7 @@ const Signup = () => {
             </RadioGroup>
           </FormControl>
           <div className="my-4">
-            <EmailOutlinedIcon sx={{ color: "action.active", mr: 1, my: 2 }} />
+            <KeyOutlinedIcon sx={{ color: "action.active", mr: 1, my: 2 }} />
             <TextField
               type="password"
               label="Password"
@@ -86,7 +87,7 @@ const Signup = () => {
             />
           </div>
           <div className="my-4">
-            <EmailOutlinedIcon sx={{ color: "action.active", mr: 1, my: 2 }} />
+            <KeyOutlinedIcon sx={{ color: "action.active", mr: 1, my: 2 }} />
             <TextField
               type="password"
               label="Confirm Password"
