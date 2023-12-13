@@ -36,11 +36,11 @@ export const saveExpense = async (req, res) => {
   try {
     //! fetching all the values from the body of the request
     const { category, expName, amount, date } = req.body;
-
-    if( !(category&& expName&& amount&& date) ){
+    console.log(req.body)
+    if (!(category && expName && amount && date)) {
       return res.status(400).json({
-        status:"failed",
-        message:"Please fill all the details :-("
+        status: "failed",
+        message: "Please fill all the details :-("
       })
     }
     //! when this route is called first a middle ware --> userVerification is called
@@ -48,13 +48,16 @@ export const saveExpense = async (req, res) => {
 
     //! storing the id in a variable
     const id = req.id;
+    console.log(id)
     //! fetching the user by using ID of the entries from mongodb
     const user = await Users.findById(id);
+
+    console.log("idhar")
     console.log(user)
     if (!user) {
       return res.status(200).json({
-        status:"failed",
-        message:"No user found"
+        status: "failed",
+        message: "No user found"
       })
     }
     //!converting the string into the Date object
@@ -93,24 +96,31 @@ export const saveExpense = async (req, res) => {
     }
 
     var message = ""
-    if (total_expense >= budget_amount) {
-      message = "You have exceeded your budget"
-      console.log(total_expense + " " + budget_amount + " " + message)
-      flag = true
-    } else if (budget_amount - total_expense <= 0.1 * budget_amount) {
-      message = `You have used more than 90% of your budget for ${category}`
-      console.log(message)
-      flag = true
+    if(budget_amount !== 0){
+      //! comparing the total expenditure with the budget.
+      //! if the expense is close to budget then send a mail through smtp as an alert
+      if (total_expense >= budget_amount) {
+        message = "You have exceeded your budget"
+        console.log(total_expense + " " + budget_amount + " " + message)
+        flag = true
+      } else if (budget_amount - total_expense <= 0.1 * budget_amount) {
+        message = `You have used more than 90% of your budget for ${category}`
+        console.log(message)
+        flag = true
+      }
     }
+    
 
-    if(flag){
-      send_mail(user.email,message)
+    if (flag) {
+      send_mail(user.email, message)
     }
-
     return res.status(200).json({
-      "response": req.body
+      status:"success",
+      message:"Expense added succesfully"
     })
   } catch (error) {
-    return res.status(400).send(error.message);
+    return res.status(400).json({
+      "error":error.message
+    });
   }
 };
