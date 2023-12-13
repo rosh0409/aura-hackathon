@@ -14,6 +14,7 @@ import KeyOutlinedIcon from "@mui/icons-material/KeyOutlined";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import defaultavatar from "../assets/default-avatar.png";
 axios.defaults.baseURL = "http://localhost:8000";
 
 const Signup_ = () => {
@@ -113,8 +114,8 @@ const Signup_ = () => {
   return (
     <main className="flex h-screen overflow-x-hidden">
       <Sidebar />
-      <div className="lg:w-2/3 w-screen">
-        <h1 className="text-3xl my-12 mx-20">Sign up</h1>
+      <div className="lg:w-2/3 w-screen flex flex-col justify-center items-center">
+        <h1 className="text-3xl text-center my-12 mx-20">Sign up</h1>
 
         {/* User details form */}
 
@@ -123,7 +124,7 @@ const Signup_ = () => {
             <label className="l" htmlFor="profile">
               <img
                 className="user_img"
-                // src={file}
+                src={defaultavatar}
                 alt=""
                 style={{ alignSelf: "center" }}
               />
@@ -139,8 +140,8 @@ const Signup_ = () => {
             />
           </div>
         </div>
-
-        <div className="ml-20">
+        <p>Click to add profile</p>
+        <div className="w-2/4">
           <div className="my-4">
             <Person2OutlinedIcon
               sx={{ color: "action.active", mr: 1, my: 2 }}
@@ -152,7 +153,7 @@ const Signup_ = () => {
               name="name"
               value={user.name}
               variant="outlined"
-              className="lg:w-2/4 w-3/4"
+              className="w-4/5"
               onChange={(e) =>
                 setUser({ ...user, [e.target.name]: e.target.value })
               }
@@ -169,7 +170,7 @@ const Signup_ = () => {
                 setUser({ ...user, [e.target.name]: e.target.value })
               }
               variant="outlined"
-              className="lg:w-2/4 w-3/4"
+              className="w-4/5"
             />
           </div>
           <FormControl>
@@ -211,7 +212,7 @@ const Signup_ = () => {
                 setUser({ ...user, [e.target.name]: e.target.value })
               }
               variant="outlined"
-              className="lg:w-2/4 w-3/4"
+              className="w-4/5"
             />
           </div>
           <div className="my-4">
@@ -225,7 +226,7 @@ const Signup_ = () => {
                 setUser({ ...user, [e.target.name]: e.target.value })
               }
               variant="outlined"
-              className="lg:w-2/4 w-3/4"
+              className="w-4/5"
             />
           </div>
           <div className="my-8">
