@@ -9,17 +9,12 @@ UserRoutes.get("/", (req, res) => {
   res.send("hiii");
 });
 
-<<<<<<< HEAD
 // UserRoutes.post("/verify-user", userVerification);
-UserRoutes.post("/signup", UserSignup);
-UserRoutes.post("/signin", UserSignin);
-=======
 //! All user routes
 
 //! All get request
-routes.get("/verify-user", UserVerification);
+UserRoutes.get("/verify-user", UserVerification);
 
 //! All post request
-routes.post("/signup", UserSignup);
-routes.post("/signin", UserSignin);
->>>>>>> f66b70de6dd27ef3ffbd6de227462e39808f47ee
+UserRoutes.post("/signup", UserSignup);
+UserRoutes.post("/signin", UserSignin);
