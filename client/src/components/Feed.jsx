@@ -22,6 +22,7 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 // import SearchIcon from '@mui/icons-material/Search';
 // import {useNavigate} from "react-router-dom";
 import Community from "../pages/Community";
+import Dashboard from "./Dashboard";
 
 const Feed = () => {
   // console.log(props.res)

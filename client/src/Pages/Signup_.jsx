@@ -115,7 +115,7 @@ const Signup_ = () => {
     <main className="flex h-screen overflow-x-hidden">
       <Sidebar />
       <div className="lg:w-2/3 w-screen flex flex-col justify-center items-center">
-        <h1 className="text-3xl text-center my-12 mx-20">Sign up</h1>
+        <h1 className="text-3xl text-center mt-12 mb-4 mx-20">Sign up</h1>
 
         {/* User details form */}
 
@@ -229,7 +229,7 @@ const Signup_ = () => {
               className="w-4/5"
             />
           </div>
-          <div className="my-8">
+          <div className="my-8 flex justify-center">
             <button
               onClick={handleSignup}
               className="text-lg bg-lime-300 px-4 py-1 rounded-md"

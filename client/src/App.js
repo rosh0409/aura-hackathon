@@ -14,13 +14,12 @@ function App() {
   return (
     <>
       <BrowserRouter>
-        {/* <Dashboard /> */}
         <Routes>
           <Route exact path={"/signup"} element={<Signup />} />
           <Route exact path={"/signin"} element={<Login />} />
           <Route exact path={"/trackExpense"} element={<TrackExpense />} />
-          <Route exact path={"/dashboard"} element={<Dashboard />} />
-        </Routes>
+          
+        </Routes><Dashboard/>
       </BrowserRouter>
       <Toaster />
     </>

@@ -60,14 +60,14 @@ const Login_ = () => {
     });
   };
   return (
-    <main className="flex h-screen overflow-x-hidden">
+    <main className="flex h-screen overflow-y-hidden">
       <Sidebar />
-      <div className="md:w-2/3 w-screen">
+      <div className="w-screen flex flex-col items-center">
         <h1 className="text-3xl my-12 mx-20">Login</h1>
 
         {/* User details form */}
 
-        <div className="ml-20">
+        <div className="lg:w-2/4 w-3/4">
           <div className="my-4">
             <EmailOutlinedIcon sx={{ color: "action.active", mr: 1, my: 2 }} />
             <TextField
@@ -76,7 +76,7 @@ const Login_ = () => {
               name="email"
               value={user.email}
               variant="outlined"
-              className="lg:w-2/4 w-3/4"
+              className="w-3/4"
               onChange={(e) =>
                 setUser({ ...user, [e.target.name]: e.target.value })
               }
@@ -90,15 +90,15 @@ const Login_ = () => {
               name="password"
               value={user.password}
               variant="outlined"
-              className="lg:w-2/4 w-3/4"
+              className="w-3/4"
               onChange={(e) =>
                 setUser({ ...user, [e.target.name]: e.target.value })
               }
             />
           </div>
-          <div className="my-10">
+          <div className="my-10 flex justify-center">
             <button
-              className="text-lg bg-lime-300 px-4 py-1 rounded-md"
+              className="text-lg bg-lime-300 px-4 py-1  rounded-md"
               onClick={handleSignin}
             >
               Signin
