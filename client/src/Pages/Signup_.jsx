@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../App.css";
+import "./Signup.css";
 import TextField from "@mui/material/TextField";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -117,11 +118,34 @@ const Signup_ = () => {
 
         {/* User details form */}
 
+        <div className="logo-s">
+          <div>
+            <label className="l" htmlFor="profile">
+              <img
+                className="user_img"
+                // src={file}
+                alt=""
+                style={{ alignSelf: "center" }}
+              />
+            </label>
+            <input
+              className="file"
+              accept="image/*"
+              id="profile"
+              name="profile"
+              type="file"
+              // onChange={onUpload}
+              style={{ display: "none" }}
+            />
+          </div>
+        </div>
+
         <div className="ml-20">
           <div className="my-4">
             <Person2OutlinedIcon
               sx={{ color: "action.active", mr: 1, my: 2 }}
             />
+
             <TextField
               id="input-with-sx"
               label="Name"
