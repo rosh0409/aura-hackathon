@@ -1,4 +1,4 @@
-
+import AddBudget from '../pages/AddBudget'
 import AddExpense from '../pages/AddExpense';
 import React from "react";
 import SideNav from "./SideNav";

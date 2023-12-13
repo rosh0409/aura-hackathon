@@ -32,7 +32,9 @@ export const saveBudget = async (req, res) => {
     console.log(Date());
 
     //! Storing the expense info into the database
-    const budget = user.budget.push({
+    const budget = user.budget
+    user.budget.push({
+      b_id:budget.length+1,
       category,
       budName,
       amount,

@@ -64,10 +64,13 @@ export const saveExpense = async (req, res) => {
     const format_date = Date(date)
 
     // console.log(Date())
+    const expense = user.expense
+
     const int_amount = Number(amount)
     //! Storing the expense info into the database
     user.expense.push(
       {
+        e_id:expense.length+1,
         category,
         expName,
         amount:int_amount,
@@ -75,8 +78,7 @@ export const saveExpense = async (req, res) => {
       }
     )
     user.save()
-    const expense = user.expense
-    console.log(expense)
+    // console.log(expense)
 
     var flag = false;
     //! finding the total expense beingg done by the user for a particular category

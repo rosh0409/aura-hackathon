@@ -6,7 +6,7 @@ import TrackExpense from "./pages/TrackExpense";
 import "./App.css";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import { Toaster } from "react-hot-toast";
-import Dashboard from "./components/Dashboard";
+// import Dashboard from "./components/Dashboard";
 import Home from "./Home";
 // import { Dashboard } from "@mui/icons-material";
 // import Signup from "./pages/Signup";
