@@ -1,15 +1,11 @@
 import jwt from "jsonwebtoken";
 
-const generateAuthToken = (id,time) => {
+const generateAuthToken = (id, time) => {
   try {
-    let token = jwt.sign(
-      { userID: id },
-      process.env.JWT_SECRET_KEY,
-      { expiresIn: time }
-    );
+    let token = jwt.sign({ userID: id }, "qwertyuiop", { expiresIn: time });
     return token;
   } catch (error) {
-    return console.log(error.message);
+    return new Error(error.message);
   }
 };
 
