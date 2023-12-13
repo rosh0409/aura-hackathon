@@ -31,7 +31,7 @@ export const UserSignin = async (req, res) => {
             status: "success",
             message: "Login Successfull :-)",
             user,
-            token,
+            // token,
           });
       } else {
         //! failed validation --> incorrect password or wrong credentials

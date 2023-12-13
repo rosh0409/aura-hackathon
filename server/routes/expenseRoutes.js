@@ -1,5 +1,7 @@
 import express from "express";
-import {saveExpense} from '../controller/expense/saveExpense.js'
+import { saveExpense } from "../controller/expense/saveExpense.js";
+import { UserVerification } from "../controller/auth/userVerification.js";
+import { FetchExpense } from "../controller/expense/fetchExpense.js";
 export const ExpenseRoutes = express.Router();
 
 // ExpenseRoutes.get("/", (req, res) => {
@@ -7,5 +9,5 @@ export const ExpenseRoutes = express.Router();
 // });
 
 // ExpenseRoutes.post("/verify-user", userVerification);
-ExpenseRoutes.post("/saveExpense", saveExpense);
-// ExpenseRoutes.post("/signin", UserSignin);
+ExpenseRoutes.post("/saveExpense", UserVerification, saveExpense);
+ExpenseRoutes.get("/fetchExpense", UserVerification, FetchExpense);
