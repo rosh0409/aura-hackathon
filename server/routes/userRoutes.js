@@ -3,17 +3,18 @@ import { UserSignup } from "../controller/auth/userSignup.js";
 import { UserSignin } from "../controller/auth/userSignin.js";
 import { UserVerification } from "../controller/auth/userVerification.js";
 
-export const routes = express.Router();
+export const UserRoutes = express.Router();
 
-routes.get("/", (req, res) => {
+UserRoutes.get("/", (req, res) => {
   res.send("hiii");
 });
 
+// UserRoutes.post("/verify-user", userVerification);
 //! All user routes
 
 //! All get request
-routes.get("/verify-user", UserVerification);
+UserRoutes.get("/verify-user", UserVerification);
 
 //! All post request
-routes.post("/signup", UserSignup);
-routes.post("/signin", UserSignin);
+UserRoutes.post("/signup", UserSignup);
+UserRoutes.post("/signin", UserSignin);

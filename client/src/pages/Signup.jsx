@@ -9,10 +9,14 @@ import FormLabel from "@mui/material/FormLabel";
 import Sidebar from "../components/Sidebar";
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+<<<<<<< HEAD
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 axios.defaults.baseURL = "http://localhost:8000";
+=======
+import KeyOutlinedIcon from '@mui/icons-material/KeyOutlined';
+>>>>>>> 78624360acf1a356f677b81368562a78b5d9ad26
 
 const Signup = () => {
   let navigate = useNavigate();
@@ -160,7 +164,7 @@ const Signup = () => {
             </RadioGroup>
           </FormControl>
           <div className="my-4">
-            <EmailOutlinedIcon sx={{ color: "action.active", mr: 1, my: 2 }} />
+            <KeyOutlinedIcon sx={{ color: "action.active", mr: 1, my: 2 }} />
             <TextField
               type="password"
               label="Password"
@@ -174,7 +178,7 @@ const Signup = () => {
             />
           </div>
           <div className="my-4">
-            <EmailOutlinedIcon sx={{ color: "action.active", mr: 1, my: 2 }} />
+            <KeyOutlinedIcon sx={{ color: "action.active", mr: 1, my: 2 }} />
             <TextField
               type="password"
               label="Confirm Password"
