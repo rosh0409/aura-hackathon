@@ -9,17 +9,24 @@ import { Toaster } from "react-hot-toast";
 import Signup from "./pages/Signup_";
 import Login from "./pages/Login_";
 import Dashboard from "./components/Dashboard";
+import { useSelector } from "react-redux";
+import PageNotFound from "./pages/PageNotFound";
 
 function App() {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  console.log(isLoggedIn);
   return (
     <>
       <BrowserRouter>
         <Routes>
+          {isLoggedIn && <Route path="/dashboard" element={<Dashboard />} />}
           <Route exact path={"/signup"} element={<Signup />} />
           <Route exact path={"/signin"} element={<Login />} />
-          <Route exact path={"/trackExpense"} element={<TrackExpense />} />
-          
-        </Routes><Dashboard/>
+          {isLoggedIn && (
+            <Route exact path={"/trackExpense"} element={<TrackExpense />} />
+          )}
+          <Route path={"/*"} element={<PageNotFound />} />
+        </Routes>
       </BrowserRouter>
       <Toaster />
     </>

@@ -6,9 +6,12 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import KeyOutlinedIcon from "@mui/icons-material/KeyOutlined";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { authActions } from "../store";
 
 const Login_ = () => {
+  const disptach = useDispatch();
   const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
@@ -38,6 +41,7 @@ const Login_ = () => {
           duration: 4000,
           position: "bottom-right",
         });
+        disptach(authActions.login());
         navigate("/dashboard");
       } else {
         toast.dismiss(toastId);
