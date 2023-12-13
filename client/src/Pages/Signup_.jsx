@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "../App.css";
+import "./Signup.css";
 import TextField from "@mui/material/TextField";
 import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
@@ -13,30 +14,79 @@ import KeyOutlinedIcon from "@mui/icons-material/KeyOutlined";
 import toast from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import defaultavatar from "../assets/default-avatar.png";
 axios.defaults.baseURL = "http://localhost:8000";
 
 const Signup_ = () => {
   let navigate = useNavigate();
+  const [file, setFile] = useState();
   const [user, setUser] = useState({
     name: "",
     email: "",
     gender: "",
     password: "",
     confPass: "",
+    profile: new File([], ""),
   });
+  const convertToBase64 = (file) => {
+    return new Promise((resolve, reject) => {
+      const fileReader = new FileReader();
+      fileReader.readAsDataURL(file);
 
-  const handleSignup = async() => {
+      fileReader.onload = () => {
+        resolve(fileReader.result);
+      };
+      fileReader.onerror = (error) => {
+        reject(error);
+      };
+    });
+  };
+
+  const onUpload = async (e) => {
+    const base64 = await convertToBase64(e.target.files[0]);
+    setFile(base64);
+    setUser({ ...user, [e.target.name]: e.target.files[0] });
+  };
+
+  const handleSignup = async () => {
     const toastId = toast.loading("Loading...");
-    if (user.name && user.email && user.password && user.confPass && user.gender) {
+    if (
+      user.name &&
+      user.email &&
+      user.password &&
+      user.confPass &&
+      user.gender &&
+      user.profile
+    ) {
+      if (
+        // eslint-disable-next-line
+        !/^[A-Za-z0-9](([a-zA-Z0-9,=\.!\-#|\$%\^&\*\+/\?_`\{\}~]+)*)@(?:[0-9a-zA-Z-]+\.)+[a-zA-Z]{2,9}$/.test(
+          user.email
+        )
+      ) {
+        toast.dismiss(toastId);
+        setUser({ ...user, email: "" });
+        return toast.error("please enter a valid email", {
+          duration: 4000,
+          position: "top-right",
+        });
+      }
       if (user.password === user.confPass) {
         if (user.password.length >= 8 && user.password.length <= 15) {
           if (
             /^(?=.*\d)(?=.*[A-Z])(?!.*[^a-zA-Z0-9@#$^+=])/.test(user.password)
           ) {
-            const { data } = await axios.post(
-              "/api/user/signup",
-              user
-            );
+            const formdata = new FormData();
+            formdata.append("profile", user.profile);
+            formdata.append("name", user.name);
+            formdata.append("email", user.email);
+            formdata.append("password", user.password);
+            formdata.append("confPass", user.confPass);
+            formdata.append("gender", user.gender);
+
+            const { data } = await axios.post("/api/user/signup", formdata, {
+              headers: { "Content-Type": "multipart/form-data" },
+            });
             if (data.status === "success") {
               toast.dismiss(toastId);
               toast.success(data.message, {
@@ -96,23 +146,46 @@ const Signup_ = () => {
   return (
     <main className="flex h-screen overflow-x-hidden">
       <Sidebar />
-      <div className="w-2/3">
-        <h1 className="text-3xl my-12 mx-20">Sign up</h1>
+      <div className="lg:w-2/3 w-screen flex flex-col justify-center items-center">
+        <h1 className="text-3xl text-center mt-12 mb-4 mx-20">Sign up</h1>
 
         {/* User details form */}
 
-        <div className="ml-20">
+        <div className="logo-s">
+          <div>
+            <label className="l" htmlFor="profile">
+              <img
+                className="user_img"
+                src={file ? file : defaultavatar}
+                alt=""
+                style={{ alignSelf: "center" }}
+              />
+            </label>
+            <input
+              className="file"
+              accept="image/*"
+              id="profile"
+              name="profile"
+              type="file"
+              onChange={onUpload}
+              style={{ display: "none" }}
+            />
+          </div>
+        </div>
+        <p>Click to add profile</p>
+        <div className="w-2/4">
           <div className="my-4">
             <Person2OutlinedIcon
               sx={{ color: "action.active", mr: 1, my: 2 }}
             />
+
             <TextField
               id="input-with-sx"
               label="Name"
               name="name"
               value={user.name}
               variant="outlined"
-              className="w-2/4"
+              className="w-4/5"
               onChange={(e) =>
                 setUser({ ...user, [e.target.name]: e.target.value })
               }
@@ -129,7 +202,7 @@ const Signup_ = () => {
                 setUser({ ...user, [e.target.name]: e.target.value })
               }
               variant="outlined"
-              className="w-2/4"
+              className="w-4/5"
             />
           </div>
           <FormControl>
@@ -171,7 +244,7 @@ const Signup_ = () => {
                 setUser({ ...user, [e.target.name]: e.target.value })
               }
               variant="outlined"
-              className="w-2/4"
+              className="w-4/5"
             />
           </div>
           <div className="my-4">
@@ -185,10 +258,13 @@ const Signup_ = () => {
                 setUser({ ...user, [e.target.name]: e.target.value })
               }
               variant="outlined"
-              className="w-2/4"
+              className="w-4/5"
             />
+            <p className="text-gray-600 text-xs mt-1">
+              Must contain 1 uppercase letter, 1 number, min. 8 characters.
+            </p>
           </div>
-          <div className="my-8">
+          <div className="my-8 flex justify-center">
             <button
               onClick={handleSignup}
               className="text-lg bg-lime-300 px-4 py-1 rounded-md"

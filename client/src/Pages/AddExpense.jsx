@@ -1,174 +1,143 @@
-import { Box, Stack, Button, TextField, FormControl, InputLabel, MenuItem, Select } from '@mui/material'
-import React, { useState } from 'react'
-import { DemoContainer } from '@mui/x-date-pickers/internals/demo';
-import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
-import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { styled } from 'styled-components';
-import { motion } from 'framer-motion';
-
-
-const H1=styled.h1({
-  fontSize:'30px',
-  WebkitTextStroke:'0.1px white',
-  fontWeight:'900',
-  textShadow:'2px 2px #e7eceg',
-  '@media (max-width:700px)':{
-    fontSize:'20px'
-  }
-})
+import {
+  Box,
+  Stack,
+  Button,
+  TextField,
+  FormControl,
+  InputLabel,
+  MenuItem,
+  Select,
+} from "@mui/material";
+import React, { useState } from "react";
+import { DemoContainer } from "@mui/x-date-pickers/internals/demo";
+import { AdapterDayjs } from "@mui/x-date-pickers/AdapterDayjs";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { DatePicker } from "@mui/x-date-pickers/DatePicker";
+import toast from "react-hot-toast";
+import axios from "axios";
+axios.defaults.withCredentials = true
 
 const AddExpense = () => {
-  const [inputValue, setInputValue] = useState('');
-  const [inputValue2, setInputValue2] = useState('');
-  const [selectValue, setSelectValue] = useState('');
-  const [selectedDate, setSelectedDate] = useState(null);
+  const [expenses,setExpenses] = useState({ 
+      expName:"",
+      amount:0,
+      category:"",
+      date:""
+      }
+    )
 
-  // state for handling data of expenses
-  const  { category, expName, amount, date }=useState();
-
-  // submit handler for handling change
-  const submitHandler=(e)=>{
-// code
-
+  const handlechange = (e) =>{
+    e.preventDefault()
+    setExpenses({...expenses,[e.target.name]:e.target.value})
+    // console.log(expenses)
   }
 
+  const handledatechange = (new_date) =>{
+    // e.preventDefault()
+    setExpenses({...expenses,date:new_date.$d})
+    // console.log(expenses.date.$d)
+  }
 
+  const handlecatchange = (e) =>{
+    setExpenses({ ...expenses, category: e.target.value });
+  }
 
-  const handleDateChange = (date) => {
-    setSelectedDate(date);
-  };
+  const handlesubmit = async (e)=>{
+    // alert("hi")
+    const toastId = toast.loading("Loading...");
 
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-  };
-
-  const handleInputChange2 = (event) => {
-    setInputValue2(event.target.value);
-  };
-  const handleSelectChange = (event) => {
-    setSelectValue(event.target.value);
-  };
-
- 
+    e.preventDefault()
+    // console.log(expenses)
+    const { data } = await axios.post("/api/expense/saveExpense", expenses,{withCredentials:true});
+    // console.log(data)
+    if (data.status === "success") {
+      toast.dismiss(toastId);
+      toast.success(data.message, {
+        duration: 4000,
+        position: "bottom-right",
+      });
+      setExpenses("")
+    } else {
+      toast.dismiss(toastId);
+      toast.error(data.message, {
+        duration: 4000,
+        position: "top-right",
+      });
+    }
+  }
 
   return (
-  <>
-  <Box sx={{
-    textAlign:'center',
-    background:'#e7ecef',
-    display:'flex',
-    flexDirection:'column',
-    justifyContent:'center',
-    alignItems:'center',
-    height:'100%',
-    padding:'10px'
-  }}>
-   <motion.div 
-   initial={{opacity:0,scale:0}}
-   animate={{opacity:1,scale:1}}
-   transition={{duration:1}}
-   >
-   <H1>Add Expense Details</H1>
-   </motion.div>
-  <Box sx={{
-   width:'100%',
-   height:'100%',
-   display:'flex',
-   justifyContent:'center',
-   alignItems:'center'
-  }}>
-  
-    <motion.div
-    initial={{opacity:0,width:0}}
-    animate={{opacity:1,width:'50%'}}
-    transition={{duration:1}}
-    style={{
-      width:'50%',
-      height:'80%',
-      background:'white',
-      padding:'60px',
-      borderRadius:'20px',
-      '@media (max-width:700px)':{
-        width:"100%",
-        fontSize:'10px'
-      }
-    }}>
-    
-    <form onSubmit={submitHandler}>
-    <Stack gap={4}>
-        <TextField
-          label="Expense Name"
-          variant="outlined"
-          value={inputValue}
-          onChange={handleInputChange}
+    <>
+      <Box
+        sx={{
+          textAlign: "center",
+          background: "#e7ecef",
+          display: "flex",
+          flexDirection: "column",
+          justifyContent: "center",
+          alignItems: "center",
+          height: "100%",
+        }}
+      >
+        <h1>Add Expense Details</h1>
+        <Box
           sx={{
-            '@media (max-width:700px)':{
-              width:"80%",
-              fontSize:'10px'
-            }
+            width: "100%",
+            height: "100%",
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
           }}
-        />
-          <TextField
-          label="Expense Amount"
-          variant="outlined"
-          value={inputValue2}
-          onChange={handleInputChange2}
-          sx={{
-            '@media (max-width:700px)':{
-              width:"80%"
-            }
-          }}
-        />
-
-        <FormControl variant="outlined" style={{ marginTop: '20px' }}>
-          <InputLabel id="select-label">Expense Category</InputLabel>
-          <Select
-            label="Expense Category"
-            labelId="select-label"
-            value={selectValue}
-            onChange={handleSelectChange}
+        >
+          <Box
             sx={{
-              '@media (max-width:700px)':{
-                width:"80%"
-              }
+              width: "50%",
+              height: "60%",
+              background: "white",
+              padding: "60px",
+              borderRadius: "20px",
             }}
           >
-            <MenuItem value="option1">Education</MenuItem>
-            <MenuItem value="option2">Vacation</MenuItem>
-            <MenuItem value="option3">Grocery</MenuItem>
-            <MenuItem value="option1">Medical</MenuItem>
-            <MenuItem value="option2">Traveling</MenuItem>
-            <MenuItem value="option3">Vehical</MenuItem>
-            <MenuItem value="option1">Electricity</MenuItem>
-            <MenuItem value="option2">Entertainment</MenuItem>
-            <MenuItem value="option3">Subscription</MenuItem>
-            <MenuItem value="option3">Home Rent</MenuItem>
-          </Select>
-        </FormControl>
+            <form onChange={handlechange} onSubmit={handlesubmit}> 
+              <Stack gap={4}>
+                <TextField label="Expense Name" name="expName" value={expenses.expName} variant="outlined" />
+                <TextField label="Expense Amount"  type="number" name="amount" value={expenses.amount} variant="outlined" />
 
-        {/* install this---> npm install @mui/x-date-pickers
- */}
-      <LocalizationProvider dateAdapter={AdapterDayjs} >
-      <DemoContainer components={['DatePicker']}>
-        <DatePicker label="Choose Date" />
-      </DemoContainer>
-    </LocalizationProvider>
-    
-        </Stack>
-        <Stack padding={4}>
-          <Button type='button' variant="contained" color="primary">
-            Submit
-          </Button>
-        </Stack>
-      </form>
+                <FormControl variant="outlined" style={{ marginTop: "20px" }}>
+                  <InputLabel id="select-label">Expense Category</InputLabel>
+                  <Select label="Expense Category" name="category" value={expenses.category} onChange={handlecatchange} labelId="select-label">
+                    <MenuItem value="Education">Education</MenuItem>
+                    <MenuItem value="Vacation">Vacation</MenuItem>
+                    <MenuItem value="Grocery">Grocery</MenuItem>
+                    <MenuItem value="Medical">Medical</MenuItem>
+                    <MenuItem value="Traveling">Traveling</MenuItem>
+                    <MenuItem value="Vehical">Vehical</MenuItem>
+                    <MenuItem value="Electricity">Electricity</MenuItem>
+                    <MenuItem value="Entertainment">Entertainment</MenuItem>
+                    <MenuItem value="Subscription">Subscription</MenuItem>
+                    <MenuItem value="Home Rent">Home Rent</MenuItem>
+                  </Select>
+                </FormControl>
 
-    </motion.div>
+                {/* install this---> npm install @mui/x-date-pickers
+                 */}
+                <LocalizationProvider dateAdapter={AdapterDayjs}>
+                  <DemoContainer components={["DatePicker"]}>
+                    <DatePicker value={expenses.date} onChange={handledatechange} label="Choose Date" />
+                  </DemoContainer>
+                </LocalizationProvider>
+              </Stack>
+              <Stack padding={4}>
+                <Button type="submit" variant="contained" color="primary">
+                  Submit
+                </Button>
+              </Stack>
+            </form>
+          </Box>
+        </Box>
+      </Box>
+    </>
+  );
+};
 
-  </Box>
-  </Box>
-  </>
-  )
-}
-
-export default AddExpense
+export default AddExpense;

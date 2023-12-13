@@ -6,9 +6,12 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import KeyOutlinedIcon from "@mui/icons-material/KeyOutlined";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { useDispatch } from "react-redux";
 import { useNavigate } from "react-router-dom";
+import { authActions } from "../store";
 
 const Login_ = () => {
+  const disptach = useDispatch();
   const navigate = useNavigate();
   const [user, setUser] = useState({
     email: "",
@@ -17,6 +20,19 @@ const Login_ = () => {
   const handleSignin = async () => {
     const toastId = toast.loading("Loading...");
     if (user.email && user.password) {
+      if (
+        // eslint-disable-next-line
+        !/^[A-Za-z0-9](([a-zA-Z0-9,=\.!\-#|\$%\^&\*\+/\?_`\{\}~]+)*)@(?:[0-9a-zA-Z-]+\.)+[a-zA-Z]{2,9}$/.test(
+          user.email
+        )
+      ) {
+        toast.dismiss(toastId);
+        setUser({ ...user, email: "" });
+        return toast.error("please enter a valid email", {
+          duration: 4000,
+          position: "top-right",
+        });
+      }
       const { data } = await axios.post("/api/user/signin", user);
       console.log(data);
       if (data.status === "success") {
@@ -25,6 +41,7 @@ const Login_ = () => {
           duration: 4000,
           position: "bottom-right",
         });
+        disptach(authActions.login());
         navigate("/dashboard");
       } else {
         toast.dismiss(toastId);
@@ -49,12 +66,12 @@ const Login_ = () => {
   return (
     <main className="flex h-screen overflow-x-hidden">
       <Sidebar />
-      <div className="w-2/3">
+      <div className="w-screen lg:w-2/3 flex flex-col items-center">
         <h1 className="text-3xl my-12 mx-20">Login</h1>
 
         {/* User details form */}
 
-        <div className="ml-20">
+        <div className="lg:w-2/4 w-3/4">
           <div className="my-4">
             <EmailOutlinedIcon sx={{ color: "action.active", mr: 1, my: 2 }} />
             <TextField
@@ -63,7 +80,7 @@ const Login_ = () => {
               name="email"
               value={user.email}
               variant="outlined"
-              className="w-2/4"
+              className="w-3/4"
               onChange={(e) =>
                 setUser({ ...user, [e.target.name]: e.target.value })
               }
@@ -77,15 +94,15 @@ const Login_ = () => {
               name="password"
               value={user.password}
               variant="outlined"
-              className="w-2/4"
+              className="w-3/4"
               onChange={(e) =>
                 setUser({ ...user, [e.target.name]: e.target.value })
               }
             />
           </div>
-          <div className="my-10">
+          <div className="mt-10 ">
             <button
-              className="text-lg bg-lime-300 px-4 py-1 rounded-md"
+              className="text-lg bg-lime-300 px-4 py-1  rounded-md"
               onClick={handleSignin}
             >
               Signin
