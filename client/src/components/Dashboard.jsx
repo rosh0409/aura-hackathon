@@ -6,6 +6,7 @@ import Feed from "./Feed";
 import styled from "@emotion/styled";
 // import Community from "../pages/Community";
 import AddExpense from "../pages/AddExpense";
+import AddBudget from "../pages/AddBudget";
 
 const Dash = styled.div({
   display: "flex",
@@ -35,6 +36,7 @@ const Dashboard = () => {
         <Routes>
           <Route path="/home" element={<Feed />} />
           <Route path="/addexp" element={<AddExpense />} />
+          <Route exact path="/addbudget" element={<AddBudget/>}/>
         </Routes>
       </Right>
     </Dash>
