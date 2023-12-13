@@ -11,6 +11,8 @@ app.use(cookieParser());
 app.use(bodyParser.json());
 app.use(cors({ credentials: true, origin: ["http://localhost:3000"] }));
 
+
+
 app.use("/api/user", UserRoutes);
 app.use("/api/expense", ExpenseRoutes);
 

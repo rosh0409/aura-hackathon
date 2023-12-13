@@ -1,7 +1,4 @@
 import Users from "../../models/User.js";
-// import bcryptjs from "bcryptjs";
-// import generateAuthToken from "./generateToken.js";
-// import { UserVerification } from "../auth/userVerification.js";
 //! when trying to filter the expenses based on date, the data object which is 
     //! input from the user will be passed through the date object again, hence converting into same format
 
@@ -10,6 +7,12 @@ export const saveExpense = async (req, res) => {
     //! fetching all the values from the body of the request
     const { category, expName, amount, date } = req.body;
 
+    if( !(category&& expName&& amount&& date) ){
+      return res.status(400).json({
+        status:"failed",
+        message:"Please fill all the details :-("
+      })
+    }
     //! when this route is called first a middle ware --> userVerification is called
     //! which verifies from the headers if the cookie is present or not and check if it is valid
 
@@ -20,7 +23,7 @@ export const saveExpense = async (req, res) => {
     console.log(user)
     if(!user){
       return res.status(200).json({
-        status:"Unsuccess",
+        status:"failed",
         message:"No user found"
       })
     }
