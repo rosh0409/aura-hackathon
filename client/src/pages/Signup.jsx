@@ -9,18 +9,90 @@ import FormLabel from "@mui/material/FormLabel";
 import Sidebar from "../components/Sidebar";
 import Person2OutlinedIcon from "@mui/icons-material/Person2Outlined";
 import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
+import KeyOutlinedIcon from "@mui/icons-material/KeyOutlined";
+import toast from "react-hot-toast";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
+axios.defaults.baseURL = "http://localhost:8000";
 
 const Signup = () => {
-  const [details, setDetails] = useState({
-    name:"",
-    email:"",
-    gender:"",
-    password:"",
-    cpassword:""
-  })
-  const handleOnChange = (e)=>{
-    
-  }
+  let navigate = useNavigate();
+  const [user, setUser] = useState({
+    name: "",
+    email: "",
+    gender: "",
+    password: "",
+    confPass: "",
+  });
+
+  const handleSignup = async() => {
+    const toastId = toast.loading("Loading...");
+    if (user.name && user.email && user.password && user.confPass && user.gender) {
+      if (user.password === user.confPass) {
+        if (user.password.length >= 8 && user.password.length <= 15) {
+          if (
+            /^(?=.*\d)(?=.*[A-Z])(?!.*[^a-zA-Z0-9@#$^+=])/.test(user.password)
+          ) {
+            const { data } = await axios.post(
+              "/api/user/signup",
+              user
+            );
+            if (data.status === "success") {
+              toast.dismiss(toastId);
+              toast.success(data.message, {
+                duration: 4000,
+                position: "bottom-right",
+              });
+              navigate("/signin");
+            } else {
+              toast.dismiss(toastId);
+              toast.error(data.message, {
+                duration: 4000,
+                position: "top-right",
+              });
+              navigate("/signup");
+            }
+          } else {
+            toast.dismiss(toastId);
+            toast.error(
+              "Password must contain 1 capital letter and 1 number :-( ",
+              {
+                duration: 2000,
+                position: "bottom-right",
+              }
+            );
+          }
+        } else {
+          toast.dismiss(toastId);
+          toast.error(
+            "Password length must be greater than 8 and less than 15 :-( ",
+            {
+              duration: 2000,
+              position: "bottom-right",
+            }
+          );
+        }
+      } else {
+        toast.dismiss(toastId);
+        toast.error("Password and Confirm Password does not match :-( ", {
+          duration: 2000,
+          position: "bottom-right",
+        });
+      }
+    } else {
+      toast.dismiss(toastId);
+      toast.error("Please fill all the fields :-( ", {
+        duration: 2000,
+        position: "bottom-right",
+      });
+    }
+    setUser({
+      name: "",
+      email: "",
+      password: "",
+      confPass: "",
+    });
+  };
   return (
     <main className="flex h-screen overflow-x-hidden">
       <Sidebar />
@@ -37,9 +109,13 @@ const Signup = () => {
             <TextField
               id="input-with-sx"
               label="Name"
+              name="name"
+              value={user.name}
               variant="outlined"
               className="w-2/4"
-              onChange={handleOnChange}
+              onChange={(e) =>
+                setUser({ ...user, [e.target.name]: e.target.value })
+              }
             />
           </div>
           <div className="my-4">
@@ -47,6 +123,11 @@ const Signup = () => {
             <TextField
               id="input-with-sx"
               label="Email"
+              name="email"
+              value={user.email}
+              onChange={(e) =>
+                setUser({ ...user, [e.target.name]: e.target.value })
+              }
               variant="outlined"
               className="w-2/4"
             />
@@ -55,9 +136,12 @@ const Signup = () => {
             <FormLabel>Gender</FormLabel>
             <RadioGroup
               aria-labelledby="demo-radio-buttons-group-label"
-              defaultValue="female"
-              name="radio-buttons-group"
-              sx={{display:'inline'}}
+              // defaultValue="female"
+              name="gender"
+              onChange={(e) =>
+                setUser({ ...user, [e.target.name]: e.target.value })
+              }
+              sx={{ display: "inline" }}
             >
               <FormControlLabel
                 value="female"
@@ -77,25 +161,40 @@ const Signup = () => {
             </RadioGroup>
           </FormControl>
           <div className="my-4">
-            <EmailOutlinedIcon sx={{ color: "action.active", mr: 1, my: 2 }} />
+            <KeyOutlinedIcon sx={{ color: "action.active", mr: 1, my: 2 }} />
             <TextField
               type="password"
               label="Password"
+              name="password"
+              value={user.password}
+              onChange={(e) =>
+                setUser({ ...user, [e.target.name]: e.target.value })
+              }
               variant="outlined"
               className="w-2/4"
             />
           </div>
           <div className="my-4">
-            <EmailOutlinedIcon sx={{ color: "action.active", mr: 1, my: 2 }} />
+            <KeyOutlinedIcon sx={{ color: "action.active", mr: 1, my: 2 }} />
             <TextField
               type="password"
               label="Confirm Password"
+              name="confPass"
+              value={user.confPass}
+              onChange={(e) =>
+                setUser({ ...user, [e.target.name]: e.target.value })
+              }
               variant="outlined"
               className="w-2/4"
             />
           </div>
           <div className="my-8">
-            <button className="text-lg bg-lime-300 px-4 py-1 rounded-md">Signup</button>
+            <button
+              onClick={handleSignup}
+              className="text-lg bg-lime-300 px-4 py-1 rounded-md"
+            >
+              Signup
+            </button>
           </div>
         </div>
       </div>
