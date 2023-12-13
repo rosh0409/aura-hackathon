@@ -10,8 +10,8 @@ const TrackExpense = () => {
         <DropdownMenu />
       </div>
       <motion.div
-        initial={{ opacity: 0,scale:0 }}
-        animate={{ opacity: 1, scale:1 }}
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6 }}
         className="flex justify-center drop-shadow-lg md:mx-28 mx-4 py-10 bg-white rounded-md"
       >

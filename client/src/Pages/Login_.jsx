@@ -18,6 +18,7 @@ const Login_ = () => {
     const toastId = toast.loading("Loading...");
     if (user.email && user.password) {
       if (
+        // eslint-disable-next-line
         !/^[A-Za-z0-9](([a-zA-Z0-9,=\.!\-#|\$%\^&\*\+/\?_`\{\}~]+)*)@(?:[0-9a-zA-Z-]+\.)+[a-zA-Z]{2,9}$/.test(
           user.email
         )

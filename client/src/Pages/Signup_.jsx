@@ -25,10 +25,17 @@ const Signup_ = () => {
     confPass: "",
   });
 
-  const handleSignup = async() => {
+  const handleSignup = async () => {
     const toastId = toast.loading("Loading...");
-    if (user.name && user.email && user.password && user.confPass && user.gender) {
+    if (
+      user.name &&
+      user.email &&
+      user.password &&
+      user.confPass &&
+      user.gender
+    ) {
       if (
+        // eslint-disable-next-line
         !/^[A-Za-z0-9](([a-zA-Z0-9,=\.!\-#|\$%\^&\*\+/\?_`\{\}~]+)*)@(?:[0-9a-zA-Z-]+\.)+[a-zA-Z]{2,9}$/.test(
           user.email
         )
@@ -45,10 +52,7 @@ const Signup_ = () => {
           if (
             /^(?=.*\d)(?=.*[A-Z])(?!.*[^a-zA-Z0-9@#$^+=])/.test(user.password)
           ) {
-            const { data } = await axios.post(
-              "/api/user/signup",
-              user
-            );
+            const { data } = await axios.post("/api/user/signup", user);
             if (data.status === "success") {
               toast.dismiss(toastId);
               toast.success(data.message, {
