@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import bcryptjs from 'bcryptjs'
 
-const UserS = new mongoose.Schema(
+const ExpertS = new mongoose.Schema(
   {
     name: {
       type: String,
@@ -20,20 +20,22 @@ const UserS = new mongoose.Schema(
       type: String,
       required: true,
     },
-    isExpert:{
-      type:Boolean,
-      default:false
+    expertise:{
+        type:String,
+        required:true
     },
-    income: [],
-    budget: [],
-    expense: [],
+    isVerified:{
+        type:Boolean,
+        default:false
+    },
+    post:[]
   },
   {
     timestamps: true,
   }
 );
 
-UserS.pre("save", async function (next) {
+ExpertS.pre("save", async function (next) {
   try {
     if (!this.isModified("password")) {
       return next();
@@ -50,4 +52,4 @@ UserS.pre("save", async function (next) {
   }
 });
 
-export default mongoose.model("user", UserS);
+export default mongoose.model("expert", ExpertS);

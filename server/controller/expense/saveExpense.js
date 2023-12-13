@@ -1,7 +1,4 @@
 import Users from "../../models/User.js";
-// import bcryptjs from "bcryptjs";
-// import generateAuthToken from "./generateToken.js";
-// import { UserVerification } from "../auth/userVerification.js";
 //! when trying to filter the expenses based on date, the data object which is 
     //! input from the user will be passed through the date object again, hence converting into same format
 
@@ -20,15 +17,13 @@ export const saveExpense = async (req, res) => {
     console.log(user)
     if(!user){
       return res.status(200).json({
-        status:"Unsuccess",
+        status:"Failed",
         message:"No user found"
       })
     }
     //!converting the string into the Date object
     const format_date = Date(date) 
-
-    console.log(Date())
-
+    // console.log(Date())
     //! Storing the expense info into the database
     user.expense.push(
         { 
@@ -40,7 +35,8 @@ export const saveExpense = async (req, res) => {
     )
     user.save()
     return res.status(200).json({
-        "response":req.body
+        status:"success",
+        message:"Expense added successfully"
     })    
   } catch (error) {
     return res.status(400).send(error.message);
