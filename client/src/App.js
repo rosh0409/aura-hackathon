@@ -1,17 +1,22 @@
-import logo from './logo.svg';
-import './App.css';
-import { Route, BrowserRouter as Router, Routes } from 'react-router-dom'
-import SideNav from './components/SideNav';
-import Feed from './components/Feed';
-import Dashboard from './components/Dashboard';
+import "./App.css";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
+import Signup from "./pages/Signup";
+import Login from "./pages/Login";
+import { Dashboard } from "@mui/icons-material";
 
 function App() {
   return (
-<>
-  <Router>
-   <Dashboard/>
-  </Router>
-  </>
+    <>
+      <BrowserRouter>
+      <Dashboard/>
+        <Routes>
+          <Route exact path={"/signup"} element={<Signup />} />
+          <Route exact path={"/signin"} element={<Login />} />
+        </Routes>
+      </BrowserRouter>
+      <Toaster />
+    </>
   );
 }
 
