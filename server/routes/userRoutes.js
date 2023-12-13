@@ -20,7 +20,7 @@ UserRoutes.get("/verify-user", UserVerification);
 
 //! All post request
 UserRoutes.post("/signup", UserSignup);
-UserRoutes.post("/signup", UserSignup);
+UserRoutes.post("/signin", UserSignin);
 UserRoutes.post("/logout", userLogout);
 
 const upload = multer({ storage: storage });

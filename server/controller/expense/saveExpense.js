@@ -9,8 +9,8 @@ function send_mail(mail, message) {
   const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-      user: 'dishantshah3133@gmail.com',
-      pass: 'tapv nhsh kdci uppe', // Use the App Password generated in your Gmail Account settings
+      user: process.env.host_mail,
+      pass: process.env.smtp_password, // Use the App Password generated in your Gmail Account settings
     },
   });
 
