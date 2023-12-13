@@ -25,12 +25,12 @@ const Signup = () => {
   return (
     <main className="flex h-screen overflow-x-hidden">
       <Sidebar />
-      <div className="w-2/3">
-        <h1 className="text-3xl my-12 mx-20">Sign up</h1>
+      <div className="lg:w-2/3 w-screen">
+        <h1 className="text-3xl my-12 lg:mx-20 mx-12">Sign up</h1>
 
         {/* User details form */}
 
-        <div className="ml-20">
+        <div className="lg:ml-20 ml-12">
           <div className="my-4">
             <Person2OutlinedIcon
               sx={{ color: "action.active", mr: 1, my: 2 }}
@@ -39,7 +39,7 @@ const Signup = () => {
               id="input-with-sx"
               label="Name"
               variant="outlined"
-              className="w-2/4"
+              className="lg:w-2/4 w-4/5"
               onChange={handleOnChange}
             />
           </div>
@@ -49,7 +49,7 @@ const Signup = () => {
               id="input-with-sx"
               label="Email"
               variant="outlined"
-              className="w-2/4"
+              className="lg:w-2/4 w-4/5"
             />
           </div>
           <FormControl>
@@ -83,7 +83,7 @@ const Signup = () => {
               type="password"
               label="Password"
               variant="outlined"
-              className="w-2/4"
+              className="lg:w-2/4 w-4/5"
             />
           </div>
           <div className="my-4">
@@ -92,7 +92,7 @@ const Signup = () => {
               type="password"
               label="Confirm Password"
               variant="outlined"
-              className="w-2/4"
+              className="lg:w-2/4 w-4/5"
             />
           </div>
           <div className="my-8">
