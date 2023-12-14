@@ -22,7 +22,7 @@ export const UserVerification = async (req, res, next) => {
         });
       }
       req.id = user.userID;
-      console.log(req.id)
+      console.log(req.id+"here")
     });
   next();
 

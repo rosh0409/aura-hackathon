@@ -1,14 +1,16 @@
-import Expert from "../../models/Expert";
+import Expert from "../../models/Expert.js";
 
-export const dxpertPosting = async (req, res) => {
+export const expertPosting = async (req, res) => {
   try {
     const { title,path,caption} = req.body;
-    if (!(title && path && caption)){
+    if ((title && path && caption)){
         //! obtaining the id of the expert
         const userID = req.id
 
+        // console.log(userID)
         //! fetching the details using ID
-        const expert = Expert.findById(userID)
+        const expert = await Expert.findById(userID)
+        console.log(expert)
 
         //! creating a unique id for the post
         const posts = expert.post
@@ -20,12 +22,12 @@ export const dxpertPosting = async (req, res) => {
         post_id = posts[posts.length-1].post_id+1
         }
 
-
+        // console.log(post_id)
         expert.post.push({
             post_id,
             title,
             path,
-            text,
+            caption,
             "date":new Date(),
             comments:[]
         })
@@ -35,9 +37,14 @@ export const dxpertPosting = async (req, res) => {
             status:"success",
             message:"Post uploaded succesfully"
         })
+    }else{
+      return res.status(200).json({
+        status:"Failed",
+        message:"Unable to complete the request"
+      })
     }
   } catch (error) {
-    return res.status(400).message({
+    return res.status(400).json({
         status:"Failed",
         message:"Some error occured, please try again later 🙏"
     })
