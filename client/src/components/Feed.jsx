@@ -12,7 +12,7 @@ import {
   Stack,
   Typography,
 } from "@mui/material";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import NotificationsIcon from "@mui/icons-material/Notifications";
 import "./Feed.css";
 import NavigateNextIcon from "@mui/icons-material/NavigateNext";
@@ -22,14 +22,36 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 // import SearchIcon from '@mui/icons-material/Search';
 // import {useNavigate} from "react-router-dom";
 import Community from "../pages/Community";
+import axios from "axios";
 // import Dashboard from "./Dashboard";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 
 const Feed = () => {
-  // console.log(props.res)
-  // const navigate = useNavigate()
-  // const [data,setData] = useState([])
+
+  const [stats,setStats] = useState({
+    total_income:0,
+    total_expense:0,
+    total_budget:0,
+    total_saving:0
+   })
+  
+
+
+  useEffect(()=>{
+      axios.get("api/expense/fetchExpense").then((data)=>{
+        console.log(data.data.total_income);
+        setStats({...stats,
+          total_income:data.data.total_income,
+          total_expense:data.data.total_expense,
+          total_budget:data.data.total_budget,
+          total_saving:stats.total_income - stats.total_expense
+        })
+      })
+
+  },[])
+
+
 
   return (
     <>
@@ -81,7 +103,7 @@ const Feed = () => {
                     component="div"
                     sx={{ textAlign: "center" }}
                   >
-                    Total Amount
+                    Total Income
                   </Typography>
                   <Typography
                     gutterBottom
@@ -89,7 +111,8 @@ const Feed = () => {
                     component="div"
                     sx={{ textAlign: "center" }}
                   >
-                    1200000
+                    {stats.total_income}
+
                   </Typography>
                 </CardContent>
               </CardActionArea>
@@ -105,7 +128,7 @@ const Feed = () => {
                     component="div"
                     sx={{ textAlign: "center" }}
                   >
-                    Used
+                    Total Expense
                   </Typography>
                   <Typography
                     gutterBottom
@@ -113,7 +136,7 @@ const Feed = () => {
                     component="div"
                     sx={{ textAlign: "center" }}
                   >
-                    20000
+                    {stats.total_expense}
                   </Typography>
                 </CardContent>
               </CardActionArea>
@@ -129,7 +152,7 @@ const Feed = () => {
                     component="div"
                     sx={{ textAlign: "center" }}
                   >
-                    Remaining
+                    Savings
                   </Typography>
                   <Typography
                     gutterBottom
@@ -137,7 +160,7 @@ const Feed = () => {
                     component="div"
                     sx={{ textAlign: "center" }}
                   >
-                    100000
+                    {stats.total_saving}
                   </Typography>
                 </CardContent>
               </CardActionArea>

@@ -43,7 +43,7 @@ const Login_ = () => {
         });
         sessionStorage.setItem("auth",true)
         // disptach(authActions.login());
-        navigate("/dash");
+        navigate("/dash/home");
       } else {
         toast.dismiss(toastId);
         toast.error(data.message, {

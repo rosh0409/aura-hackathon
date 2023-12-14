@@ -8,7 +8,7 @@ import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 const DropdownMenu = () => {
   const createHandleMenuClick = (menuItem) => {
     return () => {
-      console.log(`Clicked on ${menuItem}`);
+      
     };
   };
   return (
@@ -17,7 +17,8 @@ const DropdownMenu = () => {
         <FilterListOutlinedIcon /> filters
       </MenuButton>
       <Menu className="bg-gray-100 py-1 px-3 rounded-md">
-        <MenuItem className="ml-2 my-3" onClick={createHandleMenuClick("All")}>
+        <MenuItem className="ml-2 my-3" 
+        onClick={createHandleMenuClick("All")}>
           All
           <hr className="h-1" />
         </MenuItem>

@@ -9,9 +9,9 @@ import TrackExpense from '../pages/TrackExpense';
 import TrackBudget from '../pages/TrackBudget';
 import AddIncome from '../pages/AddIncome';
 import TrackIncome from '../pages/TrackIncome';
-import BarChart from './BarChart';
-import CurveGraph from './CurveGraph';
-import PieGraph from './PieGraph';
+import BarChart from '../pages/BarChart';
+import CurveGraph from '../pages/CurveGraph';
+import PieGraph from '../pages/PieGraph';
 
 const Dash = styled.div({
   display: "flex",
