@@ -100,7 +100,8 @@ const Login_ = () => {
                 setUser({ ...user, [e.target.name]: e.target.value })
               }
             />
-          </div>
+            
+          </div><a href="/signup" className="text-blue-700 underline">Don't have an account? Signup</a>
           <div className="mt-10 ">
             <button
               className="text-lg bg-lime-300 px-4 py-1  rounded-md"
