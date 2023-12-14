@@ -6,6 +6,9 @@ import { Route, Routes } from "react-router-dom";
 import Feed from "./Feed";
 import styled from "@emotion/styled";
 import TrackExpense from '../pages/TrackExpense';
+import TrackBudget from '../pages/TrackBudget';
+import AddIncome from '../pages/AddIncome';
+import TrackIncome from '../pages/TrackIncome';
 
 const Dash = styled.div({
   display: "flex",
@@ -45,7 +48,10 @@ const Dashboard = () => {
           <Route path="/home" element={<Feed />} />
           <Route path="/addexp" element={<AddExpense />} />
           <Route exact path="/addbudget" element={<AddBudget/>}/>
-          <Route exact path="/track" element={<TrackExpense/>}/>
+          <Route exact path="/trackexpense" element={<TrackExpense/>}/>
+          <Route exact path="/trackbudget" element={<TrackBudget/>}/>
+          <Route exact path="/addincome" element={<AddIncome/>}/>
+          <Route exact path="/trackincome" element={<TrackIncome/>}/>
         </Routes>
       </Right>
     </Dash>

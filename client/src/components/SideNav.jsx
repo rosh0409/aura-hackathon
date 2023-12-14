@@ -11,7 +11,7 @@ import {
   Typography,
 } from "@mui/material";
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
 import Inventory2Icon from "@mui/icons-material/Inventory2";
 import EditCalendarIcon from "@mui/icons-material/EditCalendar";
@@ -22,12 +22,14 @@ import QrCodeIcon from "@mui/icons-material/QrCode";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import PieChartIcon from "@mui/icons-material/PieChart";
 import styled from "@emotion/styled";
+import AddHomeIcon from '@mui/icons-material/AddHome';
+import DataUsageIcon from '@mui/icons-material/DataUsage';
 import MenuIcon from "@mui/icons-material/Menu";
 
 const Profile = styled.div({
   display: "flex",
   justifyContent: "center",
-  padding: "20px",
+  paddingTop: "20px",
 });
 
 const linkStyle = {
@@ -36,6 +38,9 @@ const linkStyle = {
 };
 
 const SIDE = styled.div({
+  width:'25vw',
+  height:'100vh',
+  overflowY:'scroll',
   "@media (max-width:800px)": {
     transform: "translateX(-1000)",
   },
@@ -57,9 +62,6 @@ const SideNav = () => {
 
   return (
     <>
-      <Ham>
-        <MenuIcon />
-      </Ham>
       <SIDE>
         {/* profile photo section starts */}
         <Profile>
@@ -69,7 +71,6 @@ const SideNav = () => {
               height: "100px",
               backgroundColor: "red",
               borderRadius: "50%",
-              position: "fixed",
             }}
             onClick={() => {
               setOpen(true);
@@ -100,12 +101,15 @@ const SideNav = () => {
         {/* side nav bar starts here */}
 
         <Box
-          position={"fixed"}
-          sx={{
-            marginTop: "120px",
-          }}
+          
         >
-          <Link to={"/dash/home"} style={linkStyle}>
+          <NavLink
+            to={"/dash/home"}
+            className={({ isActive }) => {
+              return isActive ? "text-blue-500" : "";
+            }}
+            style={linkStyle}
+          >
             <List>
               <ListItem disablePadding>
                 <ListItemButton component="a">
@@ -116,16 +120,12 @@ const SideNav = () => {
                 </ListItemButton>
               </ListItem>
             </List>
-          </Link>
-          <Typography
-            variant="p"
-            sx={{ position: "relative", marginLeft: 2, fontSize: "16px" }}
-          >
-            Inventory
-          </Typography>
+          </NavLink>
           <List>
             <ListItem disablePadding>
-              <Link to="/dash/addexp" style={linkStyle}>
+              <Link className={({ isActive }) => {
+              return isActive ? "text-blue-500" : "";
+            }} to="/dash/addexp" style={linkStyle}>
                 <ListItemButton component="a">
                   <ListItemIcon>
                     <Inventory2Icon />
@@ -135,7 +135,7 @@ const SideNav = () => {
               </Link>
             </ListItem>
           </List>
-          <Link to={"/dash/track"} style={linkStyle}>
+          <Link to={"/dash/trackexpense"} style={linkStyle}>
             <List>
               <ListItem disablePadding>
                 <ListItemButton component="a">
@@ -147,20 +147,50 @@ const SideNav = () => {
               </ListItem>
             </List>
           </Link>
-          <Typography
-            variant="p"
-            sx={{ position: "relative", marginLeft: 2, fontSize: "16px" }}
-          >
-            Data
-          </Typography>
-          <Link to={"/role"} style={linkStyle}>
+          <Link to={"/dash/addbudget"} style={linkStyle}>
+            <List>
+              <ListItem disablePadding>
+                <ListItemButton component="a">
+                  <ListItemIcon>
+                    <AddHomeIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Add Budget" />
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </Link>
+          <Link to={"/dash/trackbudget"} style={linkStyle}>
+            <List>
+              <ListItem disablePadding>
+                <ListItemButton component="a">
+                  <ListItemIcon>
+                    <EditCalendarIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Track Budget" />
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </Link>
+          <Link to={"/dash/addincome"} style={linkStyle}>
             <List>
               <ListItem disablePadding>
                 <ListItemButton component="a">
                   <ListItemIcon>
                     <AccessibilityIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Role Based Access" />
+                  <ListItemText primary="Add Income" />
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </Link>
+          <Link to={"/dash/trackincome"} style={linkStyle}>
+            <List>
+              <ListItem disablePadding>
+                <ListItemButton component="a">
+                  <ListItemIcon>
+                    <DataUsageIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Track Income" />
                 </ListItemButton>
               </ListItem>
             </List>
@@ -177,12 +207,6 @@ const SideNav = () => {
               </ListItem>
             </List>
           </Link>
-          <Typography
-            variant="p"
-            sx={{ position: "relative", marginLeft: 2, fontSize: "16px" }}
-          >
-            Analysis Graph
-          </Typography>
           <Link to={"/bar"} style={linkStyle}>
             <List>
               <ListItem disablePadding>

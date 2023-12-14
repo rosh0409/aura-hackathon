@@ -23,6 +23,8 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 // import {useNavigate} from "react-router-dom";
 import Community from "../pages/Community";
 // import Dashboard from "./Dashboard";
+import MenuIcon from "@mui/icons-material/Menu";
+import { Link } from "react-router-dom";
 
 const Feed = () => {
   // console.log(props.res)
@@ -31,11 +33,9 @@ const Feed = () => {
 
   return (
     <>
+      
       <Box className={"feed-main"} p={2}>
-        <Box
-          display={"flex"}
-          justifyContent={"right"}
-        >
+        <Box display={"flex"} justifyContent={"right"}>
           <Stack flex={2}>
             <Typography variant="h6" color="initial">
               Welcome {}
