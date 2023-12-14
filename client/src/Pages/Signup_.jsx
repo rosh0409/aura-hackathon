@@ -318,26 +318,7 @@ const Signup_ = () => {
               />
             </RadioGroup>
           </FormControl>
-          {input && (
-            <>
-              <div className="my-4">
-                <KeyOutlinedIcon
-                  sx={{ color: "action.active", mr: 1, my: 2 }}
-                />
-                <TextField
-                  type="password"
-                  label="Password"
-                  name="password"
-                  value={user.password}
-                  onChange={(e) =>
-                    setUser({ ...user, [e.target.name]: e.target.value })
-                  }
-                  variant="outlined"
-                  className="w-4/5"
-                />
-              </div>
-            </>
-          )}
+          {input}
           <div className="my-8 flex justify-center">
             <button
               onClick={handleSignup}
