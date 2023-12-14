@@ -5,6 +5,7 @@ import SideNav from "./SideNav";
 import { Route, Routes } from "react-router-dom";
 import Feed from "./Feed";
 import styled from "@emotion/styled";
+import TrackExpense from '../pages/TrackExpense';
 
 const Dash = styled.div({
   display: "flex",
@@ -42,8 +43,9 @@ const Dashboard = () => {
       <Right>
         <Routes>
           <Route path="/home" element={<Feed />} />
-          <Route path="/addexpense" element={<AddExpense />} />
+          <Route path="/addexp" element={<AddExpense />} />
           <Route exact path="/addbudget" element={<AddBudget/>}/>
+          <Route exact path="/track" element={<TrackExpense/>}/>
         </Routes>
       </Right>
     </Dash>

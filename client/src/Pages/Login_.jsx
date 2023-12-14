@@ -35,37 +35,25 @@ const Login_ = () => {
           position: "top-right",
         });
       }
-
-      axios
-        .post("/api/user/signin", user)
-        .then((data) => {
-          disptach(userActions.login(data));
-          console.log(fetchUser);
-        })
-        .then(() => {})
-        .then(() => {});
-
-      // const { data } = await axios.post("/api/user/signin", user);
-      // console.log(data);
-
-      // if (data.status === "success") {
-      //   toast.dismiss(toastId);
-      //   toast.success(data.message, {
-      //     duration: 4000,
-      //     position: "bottom-right",
-      //   });
-      //   disptach(authActions.login());
-      //   disptach(userActions.login(data.user));
-      //   console.log(isLoggedIn);
-      //   navigate("/dashboard");
-      // } else {
-      //   toast.dismiss(toastId);
-      //   toast.error(data.message, {
-      //     duration: 4000,
-      //     position: "top-right",
-      //   });
-      //   navigate("/signin");
-      // }
+      const { data } = await axios.post("/api/user/signin", user);
+      console.log(data);
+      if (data.status === "success") {
+        toast.dismiss(toastId);
+        toast.success(data.message, {
+          duration: 4000,
+          position: "bottom-right",
+        });
+        sessionStorage.setItem("auth",true)
+        disptach(authActions.login());
+        navigate("/dash");
+      } else {
+        toast.dismiss(toastId);
+        toast.error(data.message, {
+          duration: 4000,
+          position: "top-right",
+        });
+        navigate("/signin");
+      }
     } else {
       toast.dismiss(toastId);
       toast.error("Please fill all the fields :-( ", {

@@ -53,7 +53,7 @@ export const saveExpense = async (req, res) => {
     const user = await Users.findById(id);
 
     console.log("idhar")
-    console.log(user)
+    // console.log(user)
     if (!user) {
       return res.status(200).json({
         status: "failed",
@@ -65,12 +65,20 @@ export const saveExpense = async (req, res) => {
 
     // console.log(Date())
     const expense = user.expense
+    let e_id = 0
+    const length = expense.length
+    if(!length){
+      e_id = 1
+    }else{
+      e_id = expense[expense.length-1].e_id+1
+      // console.log(e_id+"h")
+    }
 
     const int_amount = Number(amount)
     //! Storing the expense info into the database
     user.expense.push(
       {
-        e_id:expense.length+1,
+        e_id,
         category,
         expName,
         amount:int_amount,

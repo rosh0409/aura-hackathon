@@ -25,11 +25,16 @@ export const FetchExpense = async (req, res) => {
       });
     }
 
+    const expense = userExpenses.expense
+    const budget = userExpenses.budget
+    const income = userExpenses.income
+
+
     //! sending all the details of the user in response
     res.status(200).json({
       status: "success",
       message: "Expense of user found :-)",
-      userExpenses,
+      email:userExpenses.email,expense,budget,income
     });
   } catch (error) {
     return new Error(err.message);

@@ -33,8 +33,19 @@ export const saveBudget = async (req, res) => {
     const int_amount = Number(amount);
     //! Storing the expense info into the database
     const budget = user.budget
+    let b_id = 0
+    const length = budget.length
+    if(!length){
+      b_id = 1
+    }else{
+      b_id = budget[budget.length-1].b_id+1
+      // console.log(e_id+"h")
+    }
+
+
+
     user.budget.push({
-      b_id:budget.length+1,
+      b_id,
       category,
       budName,
       amount: int_amount,
