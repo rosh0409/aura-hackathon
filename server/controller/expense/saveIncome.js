@@ -32,7 +32,18 @@ export const saveIncome = async (req, res) => {
     // console.log(Date());
 
     //! Storing the expense info into the database
+    const income = user.income
+    let i_id = 0
+    const length = expense.length
+    if(!length){
+      i_id = 1
+    }else{
+      i_id = expense[expense.length-1].i_id+1
+      // console.log(e_id+"h")
+    }
+
     const budget = user.income.push({
+      i_id,
       source,
       amount,
       format_date, //! date object

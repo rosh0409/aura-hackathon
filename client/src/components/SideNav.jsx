@@ -89,7 +89,7 @@ const SideNav = () => {
           marginTop: "120px",
         }}
       >
-        <Link to={"/dashboard/"} style={linkStyle}>
+        <Link to={"/dash/home"} style={linkStyle}>
           <List>
             <ListItem disablePadding>
               <ListItemButton component="a">
@@ -106,7 +106,7 @@ const SideNav = () => {
         </Typography>
         <List>
           <ListItem disablePadding>
-            <Link to="/dashboard/addexpense" style={linkStyle}>
+            <Link to="/dash/addexp" style={linkStyle}>
               <ListItemButton component="a">
                 <ListItemIcon>
                   <Inventory2Icon />
@@ -116,7 +116,7 @@ const SideNav = () => {
             </Link>
           </ListItem>
         </List>
-        <Link to={"/dashboard/trackexpense"} style={linkStyle}>
+        <Link to={"/dash/track"} style={linkStyle}>
           <List>
             <ListItem disablePadding>
               <ListItemButton component="a">

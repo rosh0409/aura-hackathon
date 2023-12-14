@@ -15,3 +15,4 @@ ExpenseRoutes.post("/saveBudget", UserVerification, saveBudget);
 ExpenseRoutes.post("/saveIncome", UserVerification, saveIncome);
 ExpenseRoutes.post("/saveExpense", UserVerification, saveExpense);
 ExpenseRoutes.get("/fetchExpense", UserVerification, FetchExpense);
+// ExpenseRoutes.get("/fetchExpense", UserVerification, FetchExpense);

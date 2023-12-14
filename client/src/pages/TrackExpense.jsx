@@ -1,13 +1,25 @@
-import React from "react";
+import { React, useEffect, useState } from "react";
 import DropdownMenu from "../components/DropdownMenu";
 import { motion } from "framer-motion";
 import { data } from "../data";
+import toast from "react-hot-toast";
+import axios from "axios";
 
 const TrackExpense = () => {
+  const [] = useState();
 
+  // useEffect(
+  //   fetchData(),
+  //   []);
+
+  async function fetchData() {
+    const { data } = await axios.get("/api/expense/fetchExpense", {
+      withCredentials: true,
+    });
+    console.log(data);
+  }
   return (
-    <>
-    <main className="h-screen bg-greyish-ig">
+    <main className=" h-screen bg-greyish-ig">
       <div className="py-16 md:ml-28 drop-shadow-lg ml-4">
         <DropdownMenu />
       </div>
@@ -71,7 +83,7 @@ const TrackExpense = () => {
           })}
         </div>
       </motion.div>
-    </main></>
+    </main>
   );
 };
 
