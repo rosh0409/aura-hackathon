@@ -32,7 +32,10 @@ const Feed = () => {
   return (
     <>
       <Box className={"feed-main"} p={2}>
-        <Box display={"flex"} justifyContent={"right"}>
+        <Box
+          display={"flex"}
+          justifyContent={"right"}
+        >
           <Stack flex={2}>
             <Typography variant="h6" color="initial">
               Welcome {}
@@ -69,13 +72,23 @@ const Feed = () => {
         {/* //new div */}
         <Box className={"ds-img numb"}>
           <Box>
-            <Card sx={{ maxWidth: 345 }}>
+            <Card sx={{ width: 190 }}>
               <CardActionArea>
                 <CardContent sx={{ bgcolor: "darkorange" }}>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                    sx={{ textAlign: "center" }}
+                  >
                     Total Amount
                   </Typography>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                    sx={{ textAlign: "center" }}
+                  >
                     1200000
                   </Typography>
                 </CardContent>
@@ -83,13 +96,23 @@ const Feed = () => {
             </Card>
           </Box>
           <Box>
-            <Card sx={{ maxWidth: 345 }}>
+            <Card sx={{ width: 170 }}>
               <CardActionArea>
                 <CardContent sx={{ bgcolor: "red" }}>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                    sx={{ textAlign: "center" }}
+                  >
                     Used
                   </Typography>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                    sx={{ textAlign: "center" }}
+                  >
                     20000
                   </Typography>
                 </CardContent>
@@ -97,13 +120,23 @@ const Feed = () => {
             </Card>
           </Box>
           <Box>
-            <Card sx={{ maxWidth: 345 }}>
+            <Card sx={{ width: 170 }}>
               <CardActionArea>
                 <CardContent sx={{ bgcolor: "lightgreen" }}>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                    sx={{ textAlign: "center" }}
+                  >
                     Remaining
                   </Typography>
-                  <Typography gutterBottom variant="h5" component="div">
+                  <Typography
+                    gutterBottom
+                    variant="h5"
+                    component="div"
+                    sx={{ textAlign: "center" }}
+                  >
                     100000
                   </Typography>
                 </CardContent>

@@ -6,6 +6,7 @@ import cors from "cors";
 import { UserRoutes } from "./routes/userRoutes.js";
 import { ExpenseRoutes } from "./routes/expenseRoutes.js";
 import dotenv from "dotenv";
+import { ExpertRoutes } from "./routes/expertRoutes.js";
 dotenv.config();
 
 const app = express();
@@ -23,6 +24,9 @@ app.use("/api/user", UserRoutes);
 
 //! All expense related api
 app.use("/api/expense", ExpenseRoutes);
+
+//! All expense related api
+app.use("/api/expert", ExpertRoutes);
 
 //! setting up server
 app.listen(process.env.PORT, (err) => {

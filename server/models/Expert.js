@@ -28,7 +28,14 @@ const ExpertS = new mongoose.Schema(
         type:Boolean,
         default:false
     },
-    post:[]
+    post:[
+      //! id of the post
+      //! title
+      //! url for the image uploaded
+      //! text of the post 
+      //! date of posting
+      //! comments
+    ]
   },
   {
     timestamps: true,
