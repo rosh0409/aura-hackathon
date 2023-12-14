@@ -15,40 +15,41 @@ import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import { DatePicker } from "@mui/x-date-pickers/DatePicker";
 import toast from "react-hot-toast";
 import axios from "axios";
-axios.defaults.withCredentials = true
+axios.defaults.withCredentials = true;
 
 const AddExpense = () => {
-  const [expenses,setExpenses] = useState({ 
-      expName:"",
-      amount:0,
-      category:"",
-      date:""
-      }
-    )
+  const [expenses, setExpenses] = useState({
+    expName: "",
+    amount: 0,
+    category: "",
+    date: "",
+  });
 
-  const handlechange = (e) =>{
-    e.preventDefault()
-    setExpenses({...expenses,[e.target.name]:e.target.value})
+  const handlechange = (e) => {
+    e.preventDefault();
+    setExpenses({ ...expenses, [e.target.name]: e.target.value });
     // console.log(expenses)
-  }
+  };
 
-  const handledatechange = (new_date) =>{
+  const handledatechange = (new_date) => {
     // e.preventDefault()
-    setExpenses({...expenses,date:new_date.$d})
+    setExpenses({ ...expenses, date: new_date.$d });
     // console.log(expenses.date.$d)
-  }
+  };
 
-  const handlecatchange = (e) =>{
+  const handlecatchange = (e) => {
     setExpenses({ ...expenses, category: e.target.value });
-  }
+  };
 
-  const handlesubmit = async (e)=>{
+  const handlesubmit = async (e) => {
     // alert("hi")
     const toastId = toast.loading("Loading...");
 
-    e.preventDefault()
+    e.preventDefault();
     // console.log(expenses)
-    const { data } = await axios.post("/api/expense/saveExpense", expenses,{withCredentials:true});
+    const { data } = await axios.post("/api/expense/saveExpense", expenses, {
+      withCredentials: true,
+    });
     // console.log(data)
     if (data.status === "success") {
       toast.dismiss(toastId);
@@ -56,7 +57,7 @@ const AddExpense = () => {
         duration: 4000,
         position: "bottom-right",
       });
-      setExpenses("")
+      setExpenses("");
     } else {
       toast.dismiss(toastId);
       toast.error(data.message, {
@@ -64,7 +65,7 @@ const AddExpense = () => {
         position: "top-right",
       });
     }
-  }
+  };
 
   return (
     <>
@@ -75,15 +76,16 @@ const AddExpense = () => {
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
+          flexDirection: "column",
           alignItems: "center",
           height: "100%",
         }}
       >
-        <h1>Add Expense Details</h1>
+        <h1 className="text-2xl my-8">Add Expense Details</h1>
         <Box
           sx={{
-            width: "100%",
-            height: "100%",
+            // width: "100%",
+            // height: "100%",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -91,21 +93,38 @@ const AddExpense = () => {
         >
           <Box
             sx={{
-              width: "50%",
-              height: "60%",
+              width: { lg: "50vw", xl: "90vw" },
+              height: "80vh",
               background: "white",
               padding: "60px",
               borderRadius: "20px",
             }}
           >
-            <form onChange={handlechange} onSubmit={handlesubmit}> 
+            <form onChange={handlechange} onSubmit={handlesubmit}>
               <Stack gap={4}>
-                <TextField label="Expense Name" name="expName" value={expenses.expName} variant="outlined" />
-                <TextField label="Expense Amount"  type="number" name="amount" value={expenses.amount} variant="outlined" />
+                <TextField
+                  label="Expense Name"
+                  name="expName"
+                  value={expenses.expName}
+                  variant="outlined"
+                />
+                <TextField
+                  label="Expense Amount"
+                  type="number"
+                  name="amount"
+                  value={expenses.amount}
+                  variant="outlined"
+                />
 
                 <FormControl variant="outlined" style={{ marginTop: "20px" }}>
                   <InputLabel id="select-label">Expense Category</InputLabel>
-                  <Select label="Expense Category" name="category" value={expenses.category} onChange={handlecatchange} labelId="select-label">
+                  <Select
+                    label="Expense Category"
+                    name="category"
+                    value={expenses.category}
+                    onChange={handlecatchange}
+                    labelId="select-label"
+                  >
                     <MenuItem value="Education">Education</MenuItem>
                     <MenuItem value="Vacation">Vacation</MenuItem>
                     <MenuItem value="Grocery">Grocery</MenuItem>
@@ -123,7 +142,11 @@ const AddExpense = () => {
                  */}
                 <LocalizationProvider dateAdapter={AdapterDayjs}>
                   <DemoContainer components={["DatePicker"]}>
-                    <DatePicker value={expenses.date} onChange={handledatechange} label="Choose Date" />
+                    <DatePicker
+                      value={expenses.date}
+                      onChange={handledatechange}
+                      label="Choose Date"
+                    />
                   </DemoContainer>
                 </LocalizationProvider>
               </Stack>
