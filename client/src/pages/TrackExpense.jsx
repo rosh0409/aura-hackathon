@@ -1,8 +1,8 @@
 import { React, useEffect, useState } from "react";
 import DropdownMenu from "../components/DropdownMenu";
 import { motion } from "framer-motion";
-import { data } from "../data";
-import toast from "react-hot-toast";
+// import { data } from "../data";
+// import toast from "react-hot-toast";
 import axios from "axios";
 
 const TrackExpense = () => {
@@ -17,6 +17,7 @@ const TrackExpense = () => {
       withCredentials: true,
     });
     console.log(data);
+    setExpense(data.expense);
   }
   return (
     <section className="h-screen flex justify-center items-center">
