@@ -4,8 +4,10 @@ import { motion } from "framer-motion";
 import { data } from "../data";
 
 const TrackExpense = () => {
+
   return (
-    <main className="w-screen h-screen bg-greyish-ig">
+    <>
+    <main className="h-screen bg-greyish-ig">
       <div className="py-16 md:ml-28 drop-shadow-lg ml-4">
         <DropdownMenu />
       </div>
@@ -69,7 +71,7 @@ const TrackExpense = () => {
           })}
         </div>
       </motion.div>
-    </main>
+    </main></>
   );
 };
 

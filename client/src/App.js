@@ -11,6 +11,8 @@ import Login from "./pages/Login_";
 import Dashboard from "./components/Dashboard";
 import { useSelector } from "react-redux";
 import PageNotFound from "./pages/PageNotFound";
+import AddExpense from "./pages/AddExpense";
+import AddIncome from "./pages/AddIncome";
 
 function App() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
@@ -22,10 +24,10 @@ function App() {
           {isLoggedIn && <Route path="/dashboard" element={<Dashboard />} />}
           <Route exact path={"/signup"} element={<Signup />} />
           <Route exact path={"/signin"} element={<Login />} />
-          {isLoggedIn && (
-            <Route exact path={"/trackExpense"} element={<TrackExpense />} />
-          )}
-          <Route path={"/*"} element={<PageNotFound />} />
+          {/* {isLoggedIn && (
+            <Route exact path={"/trackexpense"} element={<TrackExpense />} />
+          )} */}
+          {/* <Route path={"/*"} element={<PageNotFound />} /> */}
         </Routes>
       </BrowserRouter>
       <Toaster />

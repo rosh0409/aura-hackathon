@@ -7,6 +7,8 @@ import styled from "@emotion/styled";
 // import Community from "../pages/Community";
 import AddExpense from "../pages/AddExpense";
 import AddBudget from "../pages/AddBudget";
+import AddIncome from "../pages/AddIncome";
+import TrackExpense from "../pages/TrackExpense";
 
 const Dash = styled.div({
   display: "flex",
@@ -34,9 +36,11 @@ const Dashboard = () => {
       </Side>
       <Right>
         <Routes>
-          <Route path="/home" element={<Feed />} />
-          <Route path="/addexp" element={<AddExpense />} />
-          <Route exact path="/addbudget" element={<AddBudget/>}/>
+          <Route exact path="/dashboard/feed" element={<Feed />} />
+          <Route exact path="/dashboard/addexpense" element={<AddExpense />} />
+          <Route exact path="/dashboard/addbudget" element={<AddBudget/>}/>
+          <Route exact path="/dashboard/addincome" element={<AddIncome/>}/>
+          <Route exact path="/dashboard/addexpense" element={<TrackExpense/>}/>
         </Routes>
       </Right>
     </Dash>

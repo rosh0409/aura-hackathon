@@ -13,11 +13,12 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import KeyOutlinedIcon from "@mui/icons-material/KeyOutlined";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import defaultavatar from "../assets/default-avatar.png";
 axios.defaults.baseURL = "http://localhost:8000";
 
 const Signup_ = () => {
+  let active;
   let navigate = useNavigate();
   const [file, setFile] = useState();
   const [user, setUser] = useState({
@@ -147,7 +148,13 @@ const Signup_ = () => {
     <main className="flex h-screen overflow-x-hidden">
       <Sidebar />
       <div className="lg:w-2/3 w-screen flex flex-col justify-center items-center">
-        <h1 className="text-3xl text-center mt-12 mb-4 mx-20">Sign up</h1>
+        <div className="flex">
+          <h1 className="text-3xl text-center mt-12 mb-4 mx-4">
+            Sign up
+            <hr className="bg-red-600 border-2"/>
+          </h1>
+          
+        </div>
 
         {/* User details form */}
 
@@ -262,7 +269,7 @@ const Signup_ = () => {
             />
             <p className="text-gray-600 text-xs mt-1">
               Must contain 1 uppercase letter, 1 number, min. 8 characters.
-            </p>
+            </p><a href="/signin" className="text-blue-700 underline">Already have an account? Login</a>
           </div>
           <div className="my-8 flex justify-center">
             <button
