@@ -1,31 +1,27 @@
 // src/components/ProductBarGraph.js
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { LineChart, Line, CartesianGrid, XAxis, YAxis } from 'recharts';
 import Typography from '@mui/material/Typography'
 import { Box } from '@mui/material'
+import axios from 'axios';
 
 const CurveGraph = () => {
- const data=[
-  {
-    name:"raunak",
-    age:190
-  },
-  {
-    name:"roshan",
-    age:119
-  },
-  {
-    name:"krishna",
-    age:12
-  }, {
-    name:"raunak",
-    age:19
-  },
-  {
-    name:"raunak",
-    age:10
-  },
- ]
+  console.log("hi")
+  async function fetchData(){
+    const { data } = await axios.get("api/graph/fetchCategory");
+    console.log(data)
+    setData(data.categoryData)
+    console.log(data)
+    console.log("hi")
+  }
+
+  const [data,setData] = useState()
+  useEffect(()=>{
+    fetchData()
+  }
+    ,[data])
+ 
+  fetchData()
 
   return (
     <div>

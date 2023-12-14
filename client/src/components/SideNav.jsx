@@ -183,7 +183,7 @@ const SideNav = () => {
           >
             Analysis Graph
           </Typography>
-          <Link to={"/bar"} style={linkStyle}>
+          <Link to={"bar"} style={linkStyle}>
             <List>
               <ListItem disablePadding>
                 <ListItemButton component="a">
@@ -195,7 +195,7 @@ const SideNav = () => {
               </ListItem>
             </List>
           </Link>
-          <Link to={"/pie"} style={linkStyle}>
+          <Link to={"pie"} style={linkStyle}>
             <List>
               <ListItem disablePadding>
                 <ListItemButton component="a">

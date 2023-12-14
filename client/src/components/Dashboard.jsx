@@ -6,9 +6,9 @@ import { Route, Routes } from "react-router-dom";
 import Feed from "./Feed";
 import styled from "@emotion/styled";
 import TrackExpense from '../pages/TrackExpense';
-import BarChart from './BarChart';
-import CurveGraph from './CurveGraph';
-import PieGraph from './PieGraph';
+import BarChart from '../pages/BarChart';
+import CurveGraph from '../pages/CurveGraph';
+import PieGraph from '../pages/PieGraph';
 
 const Dash = styled.div({
   display: "flex",
@@ -49,9 +49,9 @@ const Dashboard = () => {
           <Route path="/addexp" element={<AddExpense />} />
           <Route exact path="/addbudget" element={<AddBudget/>}/>
           <Route exact path="/track" element={<TrackExpense/>}/>
-          <Route path="/bar" element={<BarChart />} />
-          <Route path="/line" element={<CurveGraph />} />
-          <Route path="/pie" element={<PieGraph />} />
+          <Route exact path="/bar" element={<BarChart />} />
+          <Route exact path="line" element={<CurveGraph />} />
+          <Route exact path="/pie" element={<PieGraph />} />
         </Routes>
       </Right>
     </Dash>

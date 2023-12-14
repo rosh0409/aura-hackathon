@@ -7,6 +7,7 @@ import { UserRoutes } from "./routes/userRoutes.js";
 import { ExpenseRoutes } from "./routes/expenseRoutes.js";
 import dotenv from "dotenv";
 import { ExpertRoutes } from "./routes/expertRoutes.js";
+import { GraphRoutes } from "./routes/graphRoutes.js";
 dotenv.config();
 
 const app = express();
@@ -27,6 +28,9 @@ app.use("/api/expense", ExpenseRoutes);
 
 //! All expense related api
 app.use("/api/expert", ExpertRoutes);
+
+//! Routes for the graph
+app.use("/api/graph",GraphRoutes)
 
 //! setting up server
 app.listen(process.env.PORT, (err) => {
