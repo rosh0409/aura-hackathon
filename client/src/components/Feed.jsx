@@ -24,6 +24,8 @@ import NavigateNextIcon from "@mui/icons-material/NavigateNext";
 import Community from "../pages/Community";
 import axios from "axios";
 // import Dashboard from "./Dashboard";
+import MenuIcon from "@mui/icons-material/Menu";
+import { Link } from "react-router-dom";
 
 const Feed = () => {
   const [user, setUser] = useState({});
@@ -62,6 +64,7 @@ const Feed = () => {
 
   return (
     <>
+      
       <Box className={"feed-main"} p={2}>
         <Box display={"flex"} justifyContent={"right"}>
           <Stack flex={2}>

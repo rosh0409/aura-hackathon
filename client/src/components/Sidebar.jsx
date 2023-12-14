@@ -2,7 +2,7 @@ import React from "react";
 
 const Sidebar = () => {
   return (
-    <div className="h-full w-1/3 bg-slate-200 lg:block hidden">
+    <div className="h-auto w-1/3 bg-slate-200 lg:block hidden">
       <div className="mt-8">
         <h1 className="text-4xl text-center font-medium">LOGO</h1>
         <p className="text-sm text-center font-normal">

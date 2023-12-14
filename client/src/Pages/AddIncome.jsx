@@ -59,19 +59,20 @@ const AddIncome = () => {
       <Box
         sx={{
           textAlign: "center",
-          backgroundColor: "#e7ecef",
+          background: "#e7ecef",
           display: "flex",
           flexDirection: "column",
           justifyContent: "center",
+          flexDirection: "column",
           alignItems: "center",
-          height: "100vh",
+          height: "100%",
         }}
       >
-        <h1>Add Expense Details</h1>
+        <h1 className="text-2xl my-8">Add Expense Details</h1>
         <Box
           sx={{
-            width: "100%",
-            height: "100%",
+            // width: "100%",
+            // height: "100%",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
@@ -79,8 +80,8 @@ const AddIncome = () => {
         >
           <Box
             sx={{
-              width: "50%",
-              height: "60%",
+              width: { lg: "50vw", xl: "90vw" },
+              height: "80vh",
               background: "white",
               padding: "60px",
               borderRadius: "20px",
