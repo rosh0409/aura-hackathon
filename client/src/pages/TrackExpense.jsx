@@ -74,7 +74,8 @@ const TrackExpense = () => {
                     return (
                       <>
                         <p className="text-center mb-4" key={data.e_id}>
-                          {data.date}
+                          {Date(data.format_date)}
+                          {console.log(data.date)}
                         </p>
                         <hr className="mx-8" />
                       </>
