@@ -34,7 +34,7 @@ const AddBudget = () => {
       toast.dismiss(toastId);
       return toast.error("Please fill all the fields :-( ", {
         duration: 2000,
-        position: "bottom-right",
+        position: "top-right",
       });
     }
     const { data } = await axios.post("/api/expense/saveBudget", budget, {

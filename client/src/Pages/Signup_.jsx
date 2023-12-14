@@ -92,7 +92,7 @@ const Signup_ = () => {
               toast.dismiss(toastId);
               toast.success(data.message, {
                 duration: 4000,
-                position: "bottom-right",
+                position: "top-right",
               });
               navigate("/signin");
             } else {
@@ -109,7 +109,7 @@ const Signup_ = () => {
               "Password must contain 1 capital letter and 1 number :-( ",
               {
                 duration: 2000,
-                position: "bottom-right",
+                position: "top-right",
               }
             );
           }
@@ -119,7 +119,7 @@ const Signup_ = () => {
             "Password length must be greater than 8 and less than 15 :-( ",
             {
               duration: 2000,
-              position: "bottom-right",
+              position: "top-right",
             }
           );
         }
@@ -127,14 +127,14 @@ const Signup_ = () => {
         toast.dismiss(toastId);
         toast.error("Password and Confirm Password does not match :-( ", {
           duration: 2000,
-          position: "bottom-right",
+          position: "top-right",
         });
       }
     } else {
       toast.dismiss(toastId);
       toast.error("Please fill all the fields :-( ", {
         duration: 2000,
-        position: "bottom-right",
+        position: "top-right",
       });
     }
     setUser({
@@ -151,9 +151,8 @@ const Signup_ = () => {
         <div className="flex">
           <h1 className="text-3xl text-center mt-12 mb-4 mx-4">
             Sign up
-            <hr className="bg-red-600 border-2"/>
+            <hr className="bg-red-600 border-2" />
           </h1>
-          
         </div>
 
         {/* User details form */}
@@ -269,7 +268,10 @@ const Signup_ = () => {
             />
             <p className="text-gray-600 text-xs mt-1">
               Must contain 1 uppercase letter, 1 number, min. 8 characters.
-            </p><a href="/signin" className="text-blue-700 underline">Already have an account? Login</a>
+            </p>
+            <a href="/signin" className="text-blue-700 underline">
+              Already have an account? Login
+            </a>
           </div>
           <div className="my-8 flex justify-center">
             <button

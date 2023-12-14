@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Box,
   List,
   ListItem,
@@ -67,14 +68,25 @@ const SideNav = () => {
             style={{
               width: "100px",
               height: "100px",
-              backgroundColor: "red",
               borderRadius: "50%",
               position: "fixed",
+              top: "20px",
+              left: "70px",
+              border: "4px solid black",
             }}
             onClick={() => {
               setOpen(true);
             }}
-          ></div>
+          >
+            <Avatar
+              sx={{
+                width: "100%",
+                height: "100%",
+              }}
+              alt="Remy Sharp"
+              src="https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+            />
+          </div>
           <Menu
             id="demo-positioned-menu"
             aria-labelledby="demo-positioned-button"
@@ -102,7 +114,7 @@ const SideNav = () => {
         <Box
           position={"fixed"}
           sx={{
-            marginTop: "120px",
+            marginTop: "100px",
           }}
         >
           <Link to={"/dash/home"} style={linkStyle}>
@@ -117,12 +129,7 @@ const SideNav = () => {
               </ListItem>
             </List>
           </Link>
-          <Typography
-            variant="p"
-            sx={{ position: "relative", marginLeft: 2, fontSize: "16px" }}
-          >
-            Inventory
-          </Typography>
+
           <List>
             <ListItem disablePadding>
               <Link to="/dash/addexp" style={linkStyle}>
@@ -147,43 +154,47 @@ const SideNav = () => {
               </ListItem>
             </List>
           </Link>
-          <Typography
-            variant="p"
-            sx={{ position: "relative", marginLeft: 2, fontSize: "16px" }}
-          >
-            Data
-          </Typography>
-          <Link to={"/role"} style={linkStyle}>
+
+          <Link to={"/dash/addbudget"} style={linkStyle}>
             <List>
               <ListItem disablePadding>
                 <ListItemButton component="a">
                   <ListItemIcon>
                     <AccessibilityIcon />
                   </ListItemIcon>
-                  <ListItemText primary="Role Based Access" />
+                  <ListItemText primary="Add Budget" />
                 </ListItemButton>
               </ListItem>
             </List>
           </Link>
-          <Link to={"/qr"} style={linkStyle}>
+
+          <Link to={"/dash/trackbudget"} style={linkStyle}>
+            <List>
+              <ListItem disablePadding>
+                <ListItemButton component="a">
+                  <ListItemIcon>
+                    <BarChartIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Track Budget" />
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </Link>
+
+          <Link to={"/dash/addincome"} style={linkStyle}>
             <List>
               <ListItem disablePadding>
                 <ListItemButton component="a">
                   <ListItemIcon>
                     <QrCodeIcon />
                   </ListItemIcon>
-                  <ListItemText primary="QR Entry" />
+                  <ListItemText primary="Add Income" />
                 </ListItemButton>
               </ListItem>
             </List>
           </Link>
-          <Typography
-            variant="p"
-            sx={{ position: "relative", marginLeft: 2, fontSize: "16px" }}
-          >
-            Analysis Graph
-          </Typography>
-          <Link to={"bar"} style={linkStyle}>
+
+          <Link to={"/dash/bar"} style={linkStyle}>
             <List>
               <ListItem disablePadding>
                 <ListItemButton component="a">
@@ -195,7 +206,7 @@ const SideNav = () => {
               </ListItem>
             </List>
           </Link>
-          <Link to={"pie"} style={linkStyle}>
+          <Link to={"/dash/pie"} style={linkStyle}>
             <List>
               <ListItem disablePadding>
                 <ListItemButton component="a">
