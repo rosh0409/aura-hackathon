@@ -1,4 +1,4 @@
-import {React, useEffect, useState} from "react";
+import { React, useEffect, useState } from "react";
 import DropdownMenu from "../components/DropdownMenu";
 import { motion } from "framer-motion";
 import { data } from "../data";
@@ -6,15 +6,17 @@ import toast from "react-hot-toast";
 import axios from "axios";
 
 const TrackExpense = () => {
-  const [ ] = useState()
+  const [] = useState();
 
   // useEffect(
   //   fetchData(),
   //   []);
 
-    async function fetchData(){
-    const { data } = await axios.get("/api/expense/FetchExpense",{withCredentials:true});
-    console.log(data)
+  async function fetchData() {
+    const { data } = await axios.get("/api/expense/fetchExpense", {
+      withCredentials: true,
+    });
+    console.log(data);
   }
   return (
     <main className=" h-screen bg-greyish-ig">
