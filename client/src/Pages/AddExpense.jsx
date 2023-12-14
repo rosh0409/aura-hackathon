@@ -55,7 +55,7 @@ const AddExpense = () => {
       toast.dismiss(toastId);
       toast.success(data.message, {
         duration: 4000,
-        position: "bottom-right",
+        position: "top-right",
       });
       setExpenses({
         expName: "",

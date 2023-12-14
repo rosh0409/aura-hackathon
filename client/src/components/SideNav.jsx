@@ -1,4 +1,5 @@
 import {
+  Avatar,
   Box,
   List,
   ListItem,
@@ -69,13 +70,21 @@ const SideNav = () => {
             style={{
               width: "100px",
               height: "100px",
-              backgroundColor: "red",
               borderRadius: "50%",
             }}
             onClick={() => {
               setOpen(true);
             }}
-          ></div>
+          >
+            <Avatar
+              sx={{
+                width: "100%",
+                height: "100%",
+              }}
+              alt="Remy Sharp"
+              src="https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+            />
+          </div>
           <Menu
             id="demo-positioned-menu"
             aria-labelledby="demo-positioned-button"
@@ -195,14 +204,28 @@ const SideNav = () => {
               </ListItem>
             </List>
           </Link>
-          <Link to={"/qr"} style={linkStyle}>
+
+          <Link to={"/dash/trackbudget"} style={linkStyle}>
+            <List>
+              <ListItem disablePadding>
+                <ListItemButton component="a">
+                  <ListItemIcon>
+                    <BarChartIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Track Budget" />
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </Link>
+
+          <Link to={"/dash/addincome"} style={linkStyle}>
             <List>
               <ListItem disablePadding>
                 <ListItemButton component="a">
                   <ListItemIcon>
                     <QrCodeIcon />
                   </ListItemIcon>
-                  <ListItemText primary="QR Entry" />
+                  <ListItemText primary="Add Income" />
                 </ListItemButton>
               </ListItem>
             </List>
@@ -225,7 +248,7 @@ const SideNav = () => {
               </ListItem>
             </List>
           </Link>
-          <Link to={"pie"} style={linkStyle}>
+          <Link to={"/dash/pie"} style={linkStyle}>
             <List>
               <ListItem disablePadding>
                 <ListItemButton component="a">

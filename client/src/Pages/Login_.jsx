@@ -44,7 +44,7 @@ const Login_ = () => {
         toast.dismiss(toastId);
         toast.success(data.message, {
           duration: 4000,
-          position: "bottom-right",
+          position: "top-right",
         });
         sessionStorage.setItem("auth",true)
         // disptach(authActions.login());

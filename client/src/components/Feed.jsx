@@ -28,30 +28,39 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { Link } from "react-router-dom";
 
 const Feed = () => {
+  const [user, setUser] = useState({});
+  axios
+    .get("/api/user/get-user", {
+      withCredentials: true,
+    })
+    .then((data) => {
+      // console.log(data);
+      setUser(data.data.user);
+      console.log(user);
+    })
+    .catch((error) => {
+      return new Error(error.message);
+    });
 
-  const [stats,setStats] = useState({
-    total_income:0,
-    total_expense:0,
-    total_budget:0,
-    total_saving:0
-   })
-  
+  const [stats, setStats] = useState({
+    total_income: 0,
+    total_expense: 0,
+    total_budget: 0,
+    total_saving: 0,
+  });
 
-
-  useEffect(()=>{
-      axios.get("api/expense/fetchExpense").then((data)=>{
-        console.log(data.data.total_income);
-        setStats({...stats,
-          total_income:data.data.total_income,
-          total_expense:data.data.total_expense,
-          total_budget:data.data.total_budget,
-          total_saving:stats.total_income - stats.total_expense
-        })
-      })
-
-  },[])
-
-
+  useEffect(() => {
+    axios.get("api/expense/fetchExpense").then((data) => {
+      console.log(data.data.total_income);
+      setStats({
+        ...stats,
+        total_income: data.data.total_income,
+        total_expense: data.data.total_expense,
+        total_budget: data.data.total_budget,
+        total_saving: stats.total_income - stats.total_expense,
+      });
+    });
+  }, []);
 
   return (
     <>
@@ -60,7 +69,7 @@ const Feed = () => {
         <Box display={"flex"} justifyContent={"right"}>
           <Stack flex={2}>
             <Typography variant="h6" color="initial">
-              Welcome {}
+              Welcome <b>{user && user.name}</b>
             </Typography>
           </Stack>
           <Stack direction={"row"} gap={3}>
@@ -112,7 +121,6 @@ const Feed = () => {
                     sx={{ textAlign: "center" }}
                   >
                     {stats.total_income}
-
                   </Typography>
                 </CardContent>
               </CardActionArea>

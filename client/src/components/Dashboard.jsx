@@ -1,5 +1,5 @@
-import AddBudget from '../pages/AddBudget'
-import AddExpense from '../pages/AddExpense';
+import AddBudget from "../pages/AddBudget";
+import AddExpense from "../pages/AddExpense";
 import React from "react";
 import SideNav from "./SideNav";
 import { Route, Routes } from "react-router-dom";
@@ -34,7 +34,7 @@ const Right = styled.div({
 const Dashboard = () => {
   return (
     <Dash>
-  {/* //   <Side>
+      {/* //   <Side>
   // <SideNav/>
   //   </Side>
   //   <Right>
@@ -48,7 +48,7 @@ const Dashboard = () => {
       </Side>
       <Right>
         <Routes>
-          <Route path="/home" element={<Feed />} />
+          <Route path="/" element={<Feed />} />
           <Route path="/addexp" element={<AddExpense />} />
           <Route exact path="/addbudget" element={<AddBudget/>}/>
           <Route exact path="/trackexpense" element={<TrackExpense/>}/>
