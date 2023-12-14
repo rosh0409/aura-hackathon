@@ -23,8 +23,8 @@ import QrCodeIcon from "@mui/icons-material/QrCode";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import PieChartIcon from "@mui/icons-material/PieChart";
 import styled from "@emotion/styled";
-import AddHomeIcon from '@mui/icons-material/AddHome';
-import DataUsageIcon from '@mui/icons-material/DataUsage';
+import AddHomeIcon from "@mui/icons-material/AddHome";
+import DataUsageIcon from "@mui/icons-material/DataUsage";
 import MenuIcon from "@mui/icons-material/Menu";
 
 const Profile = styled.div({
@@ -39,9 +39,9 @@ const linkStyle = {
 };
 
 const SIDE = styled.div({
-  width:'25vw',
-  height:'100vh',
-  overflowY:'scroll',
+  width: "25vw",
+  height: "100vh",
+  overflowY: "scroll",
   "@media (max-width:800px)": {
     transform: "translateX(-1000)",
   },
@@ -109,11 +109,9 @@ const SideNav = () => {
 
         {/* side nav bar starts here */}
 
-        <Box
-          
-        >
+        <Box>
           <NavLink
-            to={"/dash/home"}
+            to={"/dash"}
             className={({ isActive }) => {
               return isActive ? "text-blue-500" : "";
             }}
@@ -132,9 +130,13 @@ const SideNav = () => {
           </NavLink>
           <List>
             <ListItem disablePadding>
-              <Link className={({ isActive }) => {
-              return isActive ? "text-blue-500" : "";
-            }} to="/dash/addexp" style={linkStyle}>
+              <Link
+                className={({ isActive }) => {
+                  return isActive ? "text-blue-500" : "";
+                }}
+                to="/dash/addexp"
+                style={linkStyle}
+              >
                 <ListItemButton component="a">
                   <ListItemIcon>
                     <Inventory2Icon />
@@ -236,7 +238,7 @@ const SideNav = () => {
           >
             Analysis Graph
           </Typography>
-          <Link to={"/bar"} style={linkStyle}>
+          <Link to={"/dash/bar"} style={linkStyle}>
             <List>
               <ListItem disablePadding>
                 <ListItemButton component="a">

@@ -5,13 +5,13 @@ import SideNav from "./SideNav";
 import { Route, Routes } from "react-router-dom";
 import Feed from "./Feed";
 import styled from "@emotion/styled";
-import TrackExpense from '../pages/TrackExpense';
-import TrackBudget from '../pages/TrackBudget';
-import AddIncome from '../pages/AddIncome';
-import TrackIncome from '../pages/TrackIncome';
-import BarChart from '../pages/BarChart';
-import CurveGraph from '../pages/CurveGraph';
-import PieGraph from '../pages/PieGraph';
+import TrackExpense from "../pages/TrackExpense";
+import TrackBudget from "../pages/TrackBudget";
+import AddIncome from "../pages/AddIncome";
+import TrackIncome from "../pages/TrackIncome";
+import BarChart from "../pages/BarChart";
+import CurveGraph from "../pages/CurveGraph";
+import PieGraph from "../pages/PieGraph";
 
 const Dash = styled.div({
   display: "flex",
@@ -50,11 +50,11 @@ const Dashboard = () => {
         <Routes>
           <Route path="/" element={<Feed />} />
           <Route path="/addexp" element={<AddExpense />} />
-          <Route exact path="/addbudget" element={<AddBudget/>}/>
-          <Route exact path="/trackexpense" element={<TrackExpense/>}/>
-          <Route exact path="/trackbudget" element={<TrackBudget/>}/>
-          <Route exact path="/addincome" element={<AddIncome/>}/>
-          <Route exact path="/trackincome" element={<TrackIncome/>}/>
+          <Route exact path="/addbudget" element={<AddBudget />} />
+          <Route exact path="/trackexpense" element={<TrackExpense />} />
+          <Route exact path="/trackbudget" element={<TrackBudget />} />
+          <Route exact path="/addincome" element={<AddIncome />} />
+          <Route exact path="/trackincome" element={<TrackIncome />} />
           <Route path="/bar" element={<BarChart />} />
           <Route path="/line" element={<CurveGraph />} />
           <Route path="/pie" element={<PieGraph />} />

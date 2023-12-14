@@ -23,16 +23,16 @@ const Sidebar = () => {
           </div>
           <div className="s">
             <p className="text-md mb-20">
-              Lorem ipsum dolor sit amet, consectetur
+              One stop solutions for your daily finances!
             </p>
             <p className="text-md mb-20">
-              Lorem ipsum dolor sit amet, consectetur
+              Achieving your financial goals becomes easy with us
             </p>
             <p className="text-md mb-20">
-              Lorem ipsum dolor sit amet, consectetur
+              Monitoring finances = Financial Growth 💰
             </p>
             <p className="text-md mb-20">
-              Lorem ipsum dolor sit amet, consectetur
+              Financial data = Valuable goldmine 💹
             </p>
           </div>
         </div>

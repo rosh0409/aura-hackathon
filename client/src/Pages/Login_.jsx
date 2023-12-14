@@ -41,9 +41,9 @@ const Login_ = () => {
           duration: 4000,
           position: "top-right",
         });
-        sessionStorage.setItem("auth",true)
+        sessionStorage.setItem("auth", true);
         // disptach(authActions.login());
-        navigate("/dash/home");
+        navigate("/dash");
       } else {
         toast.dismiss(toastId);
         toast.error(data.message, {
@@ -100,8 +100,10 @@ const Login_ = () => {
                 setUser({ ...user, [e.target.name]: e.target.value })
               }
             />
-            
-          </div><a href="/signup" className="text-blue-700 underline">Don't have an account? Signup</a>
+          </div>
+          <a href="/signup" className="text-blue-700 underline">
+            Don't have an account? Signup
+          </a>
           <div className="mt-10 ">
             <button
               className="text-lg bg-lime-300 px-4 py-1  rounded-md"
