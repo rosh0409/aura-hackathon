@@ -24,3 +24,19 @@ experts and learn more about financial management.
 It was planned to have a community similar to any social media platform, however a platform completely focused
 on the financial acpects of life.
 The backend was underway the implementation process and was aproximately 
+
+Steps to recreate the project
+
+***Step 1*** --> clone the project
+
+***step 2*** --> cd client
+
+***step 3*** --> execute the command : npm i to install required dependencies
+
+***step 4*** --> excute the command : npm start to start the frontend
+
+***step 5*** --> cd server
+
+***step 6*** --> execute the command : npm i to install required dependencies
+
+***step 7*** --> excute the command : npm start to start the backend
