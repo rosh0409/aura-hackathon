@@ -34,11 +34,11 @@ export const saveIncome = async (req, res) => {
     //! Storing the expense info into the database
     const income = user.income
     let i_id = 0
-    const length = expense.length
+    const length = income.length
     if(!length){
       i_id = 1
     }else{
-      i_id = expense[expense.length-1].i_id+1
+      i_id = income[income.length-1].i_id+1
       // console.log(e_id+"h")
     }
 
