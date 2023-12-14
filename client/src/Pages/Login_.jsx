@@ -41,8 +41,9 @@ const Login_ = () => {
           duration: 4000,
           position: "bottom-right",
         });
+        sessionStorage.setItem("auth",true)
         disptach(authActions.login());
-        navigate("/dashboard");
+        navigate("/dash");
       } else {
         toast.dismiss(toastId);
         toast.error(data.message, {

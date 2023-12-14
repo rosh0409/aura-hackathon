@@ -12,16 +12,16 @@ import PageNotFound from "./pages/PageNotFound";
 import AddBudget from "./pages/AddBudget";
 
 function App() {
-  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  console.log(isLoggedIn);
+  // const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  // console.log(isLoggedIn);
+  const isLoggedIn = sessionStorage.getItem("auth")
   return (
     <>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/dashboard" element={<Dashboard />} />
           {/* <Routes> */}
-          {isLoggedIn && <Route path="/dashboard" element={<Dashboard />} />}
+          {isLoggedIn && <Route path="/dash/*" element={<Dashboard />} />}
           <Route exact path={"/signup"} element={<Signup />} />
           <Route exact path={"/signin"} element={<Login />} />
           {isLoggedIn && (
