@@ -10,6 +10,7 @@ import { MenuButton } from "@mui/base/MenuButton";
 import { MenuItem } from "@mui/base/MenuItem";
 import FilterListOutlinedIcon from "@mui/icons-material/FilterListOutlined";
 import DeleteOutlineIcon from "@mui/icons-material/DeleteOutline";
+import toast from "react-hot-toast";
 
 const TrackExpense = () => {
   const [expense, setExpense] = useState([]);
@@ -46,6 +47,27 @@ const TrackExpense = () => {
     if (filter === "All" || filter === "") return expense;
     if (expense.category === filter) return expense;
   };
+
+  const handleDataDeletion =async (e) =>{
+    const { data } = await axios.post("/api/expense/deleteExpense", {"e_id":e}, {
+      withCredentials: true,
+    });
+    // alert(e)
+    // console.log(data);
+    if (data.status === "success") {
+      toast.success(data.message, {
+        duration: 4000, 
+        position: "bottom-right",
+      });
+      fetchData()
+    } else {
+      toast.error(data.message, {
+        duration: 4000,
+        position: "top-right",
+      });
+    }
+  };
+
   return (
     <section className="h-screen flex flex-col justify-center items-center bg-greyish-ig">
       <div className="pt-14 sticky">
@@ -138,7 +160,7 @@ const TrackExpense = () => {
       {expense.length > 0 ? (
         <>
           <main className=" h-screen  w-4/5">
-            <div className="py-16 md:ml-28 drop-shadow-lg ml-4"></div>
+            <div className="py-5 md:ml-28 drop-shadow-lg ml-4"></div>
             <motion.div
               initial={{ opacity: 0, scale: 0 }}
               animate={{ opacity: 1, scale: 1 }}
@@ -227,7 +249,7 @@ const TrackExpense = () => {
                 {expense.length > 0 ? (
                   expense.filter(filterExpense).map((data) => {
                     return (
-                      <div key={data.e_id} className="mb-4 ml-16">
+                      <div key={data.e_id} onClick={()=>{handleDataDeletion(data.e_id)}} className="mb-4 ml-16">
                         <DeleteOutlineIcon color="red" />
                         <br />
                       </div>

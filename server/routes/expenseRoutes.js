@@ -18,6 +18,6 @@ ExpenseRoutes.post("/saveBudget", UserVerification, saveBudget);
 ExpenseRoutes.post("/saveIncome", UserVerification, saveIncome);
 ExpenseRoutes.post("/saveExpense", UserVerification, saveExpense);
 ExpenseRoutes.get("/fetchExpense", UserVerification, FetchExpense);
-ExpenseRoutes.get("/deleteExpense", UserVerification, deleteExpense);
+ExpenseRoutes.post("/deleteExpense", UserVerification, deleteExpense);
 ExpenseRoutes.get("/deleteBudget", UserVerification, deleteBudget);
 ExpenseRoutes.get("/deleteIncome", UserVerification, deleteIncome);
