@@ -22,6 +22,7 @@ import QrCodeIcon from "@mui/icons-material/QrCode";
 import BarChartIcon from "@mui/icons-material/BarChart";
 import PieChartIcon from "@mui/icons-material/PieChart";
 import styled from "@emotion/styled";
+import MenuIcon from "@mui/icons-material/Menu";
 
 const Profile = styled.div({
   display: "flex",
@@ -36,7 +37,18 @@ const linkStyle = {
 
 const SIDE = styled.div({
   "@media (max-width:800px)": {
-    display: "none",
+    transform: "translateX(-1000)",
+  },
+});
+
+const Ham = styled.div({
+  display: "none",
+
+  "@media (max-width:800px)": {
+    position: "absolute",
+    top: 5,
+    left: 5,
+    display: "block",
   },
 });
 
@@ -44,159 +56,173 @@ const SideNav = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <SIDE>
-      {/* profile photo section starts */}
-      <Profile>
-        <div
-          style={{
-            width: "100px",
-            height: "100px",
-            backgroundColor: "red",
-            borderRadius: "50%",
-            position: "fixed",
-          }}
-          onClick={() => {
-            setOpen(true);
-          }}
-        ></div>
-        <Menu
-          id="demo-positioned-menu"
-          aria-labelledby="demo-positioned-button"
-          onClose={() => {
-            setOpen(false);
-          }}
-          open={open}
-          anchorOrigin={{
-            vertical: "top",
-            horizontal: "left",
-          }}
-          transformOrigin={{
-            vertical: "top",
-            horizontal: "left",
+    <>
+      <Ham>
+        <MenuIcon />
+      </Ham>
+      <SIDE>
+        {/* profile photo section starts */}
+        <Profile>
+          <div
+            style={{
+              width: "100px",
+              height: "100px",
+              backgroundColor: "red",
+              borderRadius: "50%",
+              position: "fixed",
+            }}
+            onClick={() => {
+              setOpen(true);
+            }}
+          ></div>
+          <Menu
+            id="demo-positioned-menu"
+            aria-labelledby="demo-positioned-button"
+            onClose={() => {
+              setOpen(false);
+            }}
+            open={open}
+            anchorOrigin={{
+              vertical: "top",
+              horizontal: "left",
+            }}
+            transformOrigin={{
+              vertical: "top",
+              horizontal: "left",
+            }}
+          >
+            <MenuItem>Profile</MenuItem>
+            <MenuItem>Logout</MenuItem>
+          </Menu>
+        </Profile>
+        {/* profile photo ends */}
+
+        {/* side nav bar starts here */}
+
+        <Box
+          position={"fixed"}
+          sx={{
+            marginTop: "120px",
           }}
         >
-          <MenuItem>Profile</MenuItem>
-          <MenuItem>Logout</MenuItem>
-        </Menu>
-      </Profile>
-      {/* profile photo ends */}
+          <Link to={"/dash/home"} style={linkStyle}>
+            <List>
+              <ListItem disablePadding>
+                <ListItemButton component="a">
+                  <ListItemIcon>
+                    <HomeIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Dashboard" />
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </Link>
+          <Typography
+            variant="p"
+            sx={{ position: "relative", marginLeft: 2, fontSize: "16px" }}
+          >
+            Inventory
+          </Typography>
+          <List>
+            <ListItem disablePadding>
+              <Link to="/dash/addexp" style={linkStyle}>
+                <ListItemButton component="a">
+                  <ListItemIcon>
+                    <Inventory2Icon />
+                  </ListItemIcon>
+                  <ListItemText primary="Add Expense" />
+                </ListItemButton>
+              </Link>
+            </ListItem>
+          </List>
+          <Link to={"/dash/track"} style={linkStyle}>
+            <List>
+              <ListItem disablePadding>
+                <ListItemButton component="a">
+                  <ListItemIcon>
+                    <EditCalendarIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Track Expense" />
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </Link>
+          <Typography
+            variant="p"
+            sx={{ position: "relative", marginLeft: 2, fontSize: "16px" }}
+          >
+            Data
+          </Typography>
+          <Link to={"/role"} style={linkStyle}>
+            <List>
+              <ListItem disablePadding>
+                <ListItemButton component="a">
+                  <ListItemIcon>
+                    <AccessibilityIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Role Based Access" />
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </Link>
+          <Link to={"/qr"} style={linkStyle}>
+            <List>
+              <ListItem disablePadding>
+                <ListItemButton component="a">
+                  <ListItemIcon>
+                    <QrCodeIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="QR Entry" />
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </Link>
+          <Typography
+            variant="p"
+            sx={{ position: "relative", marginLeft: 2, fontSize: "16px" }}
+          >
+            Analysis Graph
+          </Typography>
+          <Link to={"/bar"} style={linkStyle}>
+            <List>
+              <ListItem disablePadding>
+                <ListItemButton component="a">
+                  <ListItemIcon>
+                    <BarChartIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Bar" />
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </Link>
+          <Link to={"/pie"} style={linkStyle}>
+            <List>
+              <ListItem disablePadding>
+                <ListItemButton component="a">
+                  <ListItemIcon>
+                    <PieChartIcon />
+                  </ListItemIcon>
+                  <ListItemText primary="Pie" />
+                </ListItemButton>
+              </ListItem>
+            </List>
+          </Link>
 
-      {/* side nav bar starts here */}
+          <List>
+            <ListItem disablePadding>
+              <ListItemButton component="a" href="/">
+                <ListItemIcon>
+                  <DarkModeIcon />
+                </ListItemIcon>
+                <Switch />
+              </ListItemButton>
+            </ListItem>
+          </List>
+        </Box>
 
-      <Box
-        position={"fixed"}
-        sx={{
-          marginTop: "120px",
-        }}
-      >
-        <Link to={"/dash/home"} style={linkStyle}>
-          <List>
-            <ListItem disablePadding>
-              <ListItemButton component="a">
-                <ListItemIcon>
-                  <HomeIcon />
-                </ListItemIcon>
-                <ListItemText primary="Dashboard" />
-              </ListItemButton>
-            </ListItem>
-          </List>
-        </Link>
-        <Typography variant="p" sx={{ position: "relative", float: "left" }}>
-          Inventory
-        </Typography>
-        <List>
-          <ListItem disablePadding>
-            <Link to="/dash/addexp" style={linkStyle}>
-              <ListItemButton component="a">
-                <ListItemIcon>
-                  <Inventory2Icon />
-                </ListItemIcon>
-                <ListItemText primary="Add Expense" />
-              </ListItemButton>
-            </Link>
-          </ListItem>
-        </List>
-        <Link to={"/dash/track"} style={linkStyle}>
-          <List>
-            <ListItem disablePadding>
-              <ListItemButton component="a">
-                <ListItemIcon>
-                  <EditCalendarIcon />
-                </ListItemIcon>
-                <ListItemText primary="Track Expense" />
-              </ListItemButton>
-            </ListItem>
-          </List>
-        </Link>
-        <Typography variant="p" sx={{ position: "relative", float: "left" }}>
-          Data
-        </Typography>
-        <Link to={"/role"} style={linkStyle}>
-          <List>
-            <ListItem disablePadding>
-              <ListItemButton component="a">
-                <ListItemIcon>
-                  <AccessibilityIcon />
-                </ListItemIcon>
-                <ListItemText primary="Role Based Access" />
-              </ListItemButton>
-            </ListItem>
-          </List>
-        </Link>
-        <Link to={"/qr"} style={linkStyle}>
-          <List>
-            <ListItem disablePadding>
-              <ListItemButton component="a">
-                <ListItemIcon>
-                  <QrCodeIcon />
-                </ListItemIcon>
-                <ListItemText primary="QR Entry" />
-              </ListItemButton>
-            </ListItem>
-          </List>
-        </Link>
-        <Typography variant="p" sx={{ position: "relative", float: "left" }}>
-          Analysis Graph
-        </Typography>
-        <Link to={"/bar"} style={linkStyle}>
-          <List>
-            <ListItem disablePadding>
-              <ListItemButton component="a">
-                <ListItemIcon>
-                  <BarChartIcon />
-                </ListItemIcon>
-                <ListItemText primary="Bar" />
-              </ListItemButton>
-            </ListItem>
-          </List>
-        </Link>
-        <Link to={"/pie"} style={linkStyle}>
-          <List>
-            <ListItem disablePadding>
-              <ListItemButton component="a">
-                <ListItemIcon>
-                  <PieChartIcon />
-                </ListItemIcon>
-                <ListItemText primary="Pie" />
-              </ListItemButton>
-            </ListItem>
-          </List>
-        </Link>
-
-        <List>
-          <ListItem disablePadding>
-            <ListItemButton component="a" href="/">
-              <ListItemIcon>
-                <DarkModeIcon />
-              </ListItemIcon>
-              <Switch />
-            </ListItemButton>
-          </ListItem>
-        </List>
-      </Box>
-
-      {/* side navbar ends */}
-    </SIDE>
+        {/* side navbar ends */}
+      </SIDE>
+    </>
   );
 };
 
