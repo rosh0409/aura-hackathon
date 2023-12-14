@@ -1,6 +1,5 @@
 import User from "../../models/User.js";
 
-
 export const FetchExpense = async (req, res) => {
   try {
     //! getting user id by verifying the user through middleware
@@ -25,18 +24,20 @@ export const FetchExpense = async (req, res) => {
       });
     }
 
-    const expense = userExpenses.expense
-    const budget = userExpenses.budget
-    const income = userExpenses.income
-
+    const expense = userExpenses.expense;
+    const budget = userExpenses.budget;
+    const income = userExpenses.income;
 
     //! sending all the details of the user in response
     res.status(200).json({
       status: "success",
       message: "Expense of user found :-)",
-      email:userExpenses.email,expense,budget,income
+      email: userExpenses.email,
+      expense,
+      budget,
+      income,
     });
   } catch (error) {
-    return new Error(err.message);
+    return new Error(error.message);
   }
 };
