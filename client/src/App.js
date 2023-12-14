@@ -10,10 +10,11 @@ import Dashboard from "./components/Dashboard";
 import { useSelector } from "react-redux";
 import PageNotFound from "./pages/PageNotFound";
 import AddBudget from "./pages/AddBudget";
+import AddIncome from "./pages/AddIncome";
 
 function App() {
   const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
-  console.log(isLoggedIn);
+  // console.log(isLoggedIn);
   return (
     <>
       <BrowserRouter>
@@ -29,6 +30,7 @@ function App() {
           )}
           <Route path={"/*"} element={<PageNotFound />} />
           <Route path={"/add-budget"} element={<AddBudget />} />
+          <Route path={"/add-income"} element={<AddIncome />} />
         </Routes>
       </BrowserRouter>
       <Toaster />

@@ -6,11 +6,13 @@ import EmailOutlinedIcon from "@mui/icons-material/EmailOutlined";
 import KeyOutlinedIcon from "@mui/icons-material/KeyOutlined";
 import toast from "react-hot-toast";
 import axios from "axios";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
-import { authActions } from "../store";
+import { authActions, userActions } from "../store";
 
 const Login_ = () => {
+  const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+  const fetchUser = useSelector((state) => state.user.user);
   const disptach = useDispatch();
   const navigate = useNavigate();
   const [user, setUser] = useState({
@@ -33,24 +35,37 @@ const Login_ = () => {
           position: "top-right",
         });
       }
-      const { data } = await axios.post("/api/user/signin", user);
-      console.log(data);
-      if (data.status === "success") {
-        toast.dismiss(toastId);
-        toast.success(data.message, {
-          duration: 4000,
-          position: "bottom-right",
-        });
-        disptach(authActions.login());
-        navigate("/dashboard");
-      } else {
-        toast.dismiss(toastId);
-        toast.error(data.message, {
-          duration: 4000,
-          position: "top-right",
-        });
-        navigate("/signin");
-      }
+
+      axios
+        .post("/api/user/signin", user)
+        .then((data) => {
+          disptach(userActions.login(data));
+          console.log(fetchUser);
+        })
+        .then(() => {})
+        .then(() => {});
+
+      // const { data } = await axios.post("/api/user/signin", user);
+      // console.log(data);
+
+      // if (data.status === "success") {
+      //   toast.dismiss(toastId);
+      //   toast.success(data.message, {
+      //     duration: 4000,
+      //     position: "bottom-right",
+      //   });
+      //   disptach(authActions.login());
+      //   disptach(userActions.login(data.user));
+      //   console.log(isLoggedIn);
+      //   navigate("/dashboard");
+      // } else {
+      //   toast.dismiss(toastId);
+      //   toast.error(data.message, {
+      //     duration: 4000,
+      //     position: "top-right",
+      //   });
+      //   navigate("/signin");
+      // }
     } else {
       toast.dismiss(toastId);
       toast.error("Please fill all the fields :-( ", {
