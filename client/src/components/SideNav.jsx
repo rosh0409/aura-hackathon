@@ -26,6 +26,7 @@ import styled from "@emotion/styled";
 import AddHomeIcon from "@mui/icons-material/AddHome";
 import DataUsageIcon from "@mui/icons-material/DataUsage";
 import MenuIcon from "@mui/icons-material/Menu";
+import axios from "axios";
 
 const Profile = styled.div({
   display: "flex",
@@ -60,6 +61,19 @@ const Ham = styled.div({
 
 const SideNav = () => {
   const [open, setOpen] = useState(false);
+  const [user, setUser] = useState({});
+  axios
+    .get("/api/user/get-user", {
+      withCredentials: true,
+    })
+    .then((data) => {
+      // console.log(data);
+      setUser(data.data.user);
+      console.log(user);
+    })
+    .catch((error) => {
+      return new Error(error.message);
+    });
 
   return (
     <>
@@ -82,7 +96,11 @@ const SideNav = () => {
                 height: "100%",
               }}
               alt="Remy Sharp"
-              src="https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+              src={
+                user
+                  ? `http://localhost:8000/static/${user.profile}`
+                  : "https://images.pexels.com/photos/674010/pexels-photo-674010.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+              }
             />
           </div>
           <Menu
@@ -158,7 +176,7 @@ const SideNav = () => {
               </ListItem>
             </List>
           </Link>
-          <Link to={"/dash/addbudget"} style={linkStyle}>
+          <Link to={"/dash/add-budget"} style={linkStyle}>
             <List>
               <ListItem disablePadding>
                 <ListItemButton component="a">
@@ -182,7 +200,7 @@ const SideNav = () => {
               </ListItem>
             </List>
           </Link>
-          <Link to={"/dash/addincome"} style={linkStyle}>
+          <Link to={"/dash/add-income"} style={linkStyle}>
             <List>
               <ListItem disablePadding>
                 <ListItemButton component="a">
@@ -207,7 +225,7 @@ const SideNav = () => {
             </List>
           </Link>
 
-          <Link to={"/dash/trackbudget"} style={linkStyle}>
+          {/* <Link to={"/dash/trackbudget"} style={linkStyle}>
             <List>
               <ListItem disablePadding>
                 <ListItemButton component="a">
@@ -218,9 +236,9 @@ const SideNav = () => {
                 </ListItemButton>
               </ListItem>
             </List>
-          </Link>
+          </Link> */}
 
-          <Link to={"/dash/addincome"} style={linkStyle}>
+          {/* <Link to={"/dash/add-income"} style={linkStyle}>
             <List>
               <ListItem disablePadding>
                 <ListItemButton component="a">
@@ -231,7 +249,7 @@ const SideNav = () => {
                 </ListItemButton>
               </ListItem>
             </List>
-          </Link>
+          </Link> */}
           <Typography
             variant="p"
             sx={{ position: "relative", marginLeft: 2, fontSize: "16px" }}

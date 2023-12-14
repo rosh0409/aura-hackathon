@@ -6,9 +6,9 @@ export const UserSignup = async (req, res) => {
   try {
     //destructuring the body
     const { name, email, password, confPass, gender } = req.body;
-
+    const profile = req.file.filename;
     //!checking every variable contains value
-    if (name && email && password && confPass && gender) {
+    if (name && email && password && confPass && gender && profile) {
       //!both password and confirm password should be same
       if (password === confPass) {
         if (!(await Users.findOne({ email }))) {
@@ -18,6 +18,7 @@ export const UserSignup = async (req, res) => {
             email,
             password,
             gender,
+            profile,
           });
 
           //!saving user to database

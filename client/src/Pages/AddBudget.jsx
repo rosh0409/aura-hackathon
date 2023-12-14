@@ -53,14 +53,14 @@ const AddBudget = () => {
         date: new Date(),
         duration: "",
       });
-      navigate("/add-budget");
+      navigate("/dash/add-budget");
     } else {
       toast.dismiss(toastId);
       toast.error(data.message, {
         duration: 4000,
         position: "top-right",
       });
-      navigate("/add-budget");
+      navigate("/dash/add-budget");
     }
   };
   return (

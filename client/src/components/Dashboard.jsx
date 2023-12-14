@@ -50,10 +50,10 @@ const Dashboard = () => {
         <Routes>
           <Route path="/" element={<Feed />} />
           <Route path="/addexp" element={<AddExpense />} />
-          <Route exact path="/addbudget" element={<AddBudget />} />
+          <Route exact path="/add-budget" element={<AddBudget />} />
           <Route exact path="/trackexpense" element={<TrackExpense />} />
           <Route exact path="/trackbudget" element={<TrackBudget />} />
-          <Route exact path="/addincome" element={<AddIncome />} />
+          <Route exact path="/add-income" element={<AddIncome />} />
           <Route exact path="/trackincome" element={<TrackIncome />} />
           <Route path="/bar" element={<BarChart />} />
           <Route path="/line" element={<CurveGraph />} />

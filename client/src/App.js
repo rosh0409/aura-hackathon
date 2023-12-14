@@ -34,7 +34,9 @@ function App() {
           {!sessionStorage.getItem("auth") && (
             <Route exact path={"/signup"} element={<Signup />} />
           )}
-          <Route exact path={"/signin"} element={<Login />} />
+          {!sessionStorage.getItem("auth") && (
+            <Route exact path={"/signin"} element={<Login />} />
+          )}
           <Route
             exact
             path={"/trackExpense"}

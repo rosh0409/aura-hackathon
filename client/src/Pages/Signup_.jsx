@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../App.css";
 import "./Signup.css";
 import TextField from "@mui/material/TextField";
-import Radio, { radioClasses } from "@mui/material/Radio";
+import Radio from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
@@ -21,31 +21,12 @@ const Signup_ = () => {
   let active;
   let navigate = useNavigate();
   const [file, setFile] = useState();
-  const [input, setInput] = useState();
-  const profInput = () =>{
-    return(<> 
-      <div className="my-4">
-        <KeyOutlinedIcon sx={{ color: "action.active", mr: 1, my: 2 }} />
-        <TextField
-          label="Profession"
-          name="Profession"
-          value={user.profession}
-          onChange={(e) =>
-            setUser({ ...user, [e.target.name]: e.target.value })
-          }
-          variant="outlined"
-          className="w-4/5"
-        />
-      </div></>)
-  }
   const [user, setUser] = useState({
     name: "",
     email: "",
     gender: "",
     password: "",
     confPass: "",
-    accType: "",
-    profession:"",
     profile: new File([], ""),
   });
   const convertToBase64 = (file) => {
@@ -161,10 +142,11 @@ const Signup_ = () => {
       email: "",
       password: "",
       confPass: "",
+      profile: new File([], ""),
     });
   };
   return (
-    <main className="flex overflow-x-hidden">
+    <main className="flex h-screen overflow-x-hidden">
       <Sidebar />
       <div className="lg:w-2/3 w-screen flex flex-col justify-center items-center">
         <div className="flex">
@@ -292,33 +274,6 @@ const Signup_ = () => {
               Already have an account? Login
             </a>
           </div>
-          <FormControl className="flex">
-            <FormLabel className="">Are you a</FormLabel>
-            <RadioGroup
-              aria-labelledby="demo-radio-buttons-group-label"
-              name="acctype"
-              onChange={(e) =>
-                setUser({ ...user, [e.target.name]: e.target.value })
-              }
-              sx={{ display: "inline" }}
-            >
-              <FormControlLabel
-                id="user"
-                value="user"
-                control={<Radio size="small" />}
-                label="User"
-                onClick={() => setInput(false)}
-              />
-              <FormControlLabel
-                id="profesional"
-                value="Profesional"
-                control={<Radio size="small" />}
-                label="Profesional"
-                onClick={() => setInput(profInput)}
-              />
-            </RadioGroup>
-          </FormControl>
-          {input}
           <div className="my-8 flex justify-center">
             <button
               onClick={handleSignup}

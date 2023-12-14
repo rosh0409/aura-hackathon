@@ -44,14 +44,14 @@ const AddIncome = () => {
         amount: 0,
         date: "",
       });
-      navigate("/add-income");
+      navigate("/dash/add-income");
     } else {
       toast.dismiss(toastId);
       toast.error(data.message, {
         duration: 4000,
         position: "top-right",
       });
-      navigate("/add-income");
+      navigate("/dash/add-income");
     }
   };
   return (

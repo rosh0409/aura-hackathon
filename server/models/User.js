@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
-import bcryptjs from 'bcryptjs'
+import bcryptjs from "bcryptjs";
 
 const UserS = new mongoose.Schema(
   {
@@ -19,6 +19,10 @@ const UserS = new mongoose.Schema(
     gender: {
       type: String,
       required: true,
+    },
+    profile: {
+      type: String,
+      require: true,
     },
     income: [],
     budget: [],
