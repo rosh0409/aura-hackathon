@@ -46,10 +46,11 @@ const AddExpense = () => {
     const toastId = toast.loading("Loading...");
 
     e.preventDefault();
+    console.log(expenses);
     const { data } = await axios.post("/api/expense/saveExpense", expenses, {
       withCredentials: true,
     });
-    // console.log(data)
+    // console.log(data);
     if (data.status === "success") {
       toast.dismiss(toastId);
       toast.success(data.message, {
