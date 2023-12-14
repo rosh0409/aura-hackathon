@@ -54,7 +54,7 @@ const Home = () => {
               alignItems: "center",
             }}
           >
-            <h1 className="head-logo">Welcome To SaviFy</h1>
+            <h1 className="head-logo">Welcome To SaverFy</h1>
             <Box
               sx={{
                 width: "60vw",
