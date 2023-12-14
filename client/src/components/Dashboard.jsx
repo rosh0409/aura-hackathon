@@ -9,6 +9,9 @@ import TrackExpense from '../pages/TrackExpense';
 import TrackBudget from '../pages/TrackBudget';
 import AddIncome from '../pages/AddIncome';
 import TrackIncome from '../pages/TrackIncome';
+import BarChart from './BarChart';
+import CurveGraph from './CurveGraph';
+import PieGraph from './PieGraph';
 
 const Dash = styled.div({
   display: "flex",
@@ -52,6 +55,9 @@ const Dashboard = () => {
           <Route exact path="/trackbudget" element={<TrackBudget/>}/>
           <Route exact path="/addincome" element={<AddIncome/>}/>
           <Route exact path="/trackincome" element={<TrackIncome/>}/>
+          <Route path="/bar" element={<BarChart />} />
+          <Route path="/line" element={<CurveGraph />} />
+          <Route path="/pie" element={<PieGraph />} />
         </Routes>
       </Right>
     </Dash>

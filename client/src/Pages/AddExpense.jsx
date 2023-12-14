@@ -46,7 +46,6 @@ const AddExpense = () => {
     const toastId = toast.loading("Loading...");
 
     e.preventDefault();
-    // console.log(expenses)
     const { data } = await axios.post("/api/expense/saveExpense", expenses, {
       withCredentials: true,
     });
@@ -57,7 +56,12 @@ const AddExpense = () => {
         duration: 4000,
         position: "bottom-right",
       });
-      setExpenses("");
+      setExpenses({
+        expName: "",
+        amount: 0,
+        category: "",
+        date: "",
+      });
     } else {
       toast.dismiss(toastId);
       toast.error(data.message, {

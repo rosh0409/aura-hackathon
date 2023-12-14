@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import "../App.css";
 import "./Signup.css";
 import TextField from "@mui/material/TextField";
-import Radio from "@mui/material/Radio";
+import Radio, { radioClasses } from "@mui/material/Radio";
 import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
@@ -21,12 +21,31 @@ const Signup_ = () => {
   let active;
   let navigate = useNavigate();
   const [file, setFile] = useState();
+  const [input, setInput] = useState();
+  const profInput = () =>{
+    return(<> 
+      <div className="my-4">
+        <KeyOutlinedIcon sx={{ color: "action.active", mr: 1, my: 2 }} />
+        <TextField
+          label="Profession"
+          name="Profession"
+          value={user.profession}
+          onChange={(e) =>
+            setUser({ ...user, [e.target.name]: e.target.value })
+          }
+          variant="outlined"
+          className="w-4/5"
+        />
+      </div></>)
+  }
   const [user, setUser] = useState({
     name: "",
     email: "",
     gender: "",
     password: "",
     confPass: "",
+    accType: "",
+    profession:"",
     profile: new File([], ""),
   });
   const convertToBase64 = (file) => {
@@ -145,15 +164,14 @@ const Signup_ = () => {
     });
   };
   return (
-    <main className="flex h-screen overflow-x-hidden">
+    <main className="flex overflow-x-hidden">
       <Sidebar />
       <div className="lg:w-2/3 w-screen flex flex-col justify-center items-center">
         <div className="flex">
           <h1 className="text-3xl text-center mt-12 mb-4 mx-4">
             Sign up
-            <hr className="bg-red-600 border-2"/>
+            <hr className="bg-red-600 border-2" />
           </h1>
-          
         </div>
 
         {/* User details form */}
@@ -269,8 +287,57 @@ const Signup_ = () => {
             />
             <p className="text-gray-600 text-xs mt-1">
               Must contain 1 uppercase letter, 1 number, min. 8 characters.
-            </p><a href="/signin" className="text-blue-700 underline">Already have an account? Login</a>
+            </p>
+            <a href="/signin" className="text-blue-700 underline">
+              Already have an account? Login
+            </a>
           </div>
+          <FormControl className="flex">
+            <FormLabel className="">Are you a</FormLabel>
+            <RadioGroup
+              aria-labelledby="demo-radio-buttons-group-label"
+              name="acctype"
+              onChange={(e) =>
+                setUser({ ...user, [e.target.name]: e.target.value })
+              }
+              sx={{ display: "inline" }}
+            >
+              <FormControlLabel
+                id="user"
+                value="user"
+                control={<Radio size="small" />}
+                label="User"
+                onClick={() => setInput(false)}
+              />
+              <FormControlLabel
+                id="profesional"
+                value="Profesional"
+                control={<Radio size="small" />}
+                label="Profesional"
+                onClick={() => setInput(profInput)}
+              />
+            </RadioGroup>
+          </FormControl>
+          {input && (
+            <>
+              <div className="my-4">
+                <KeyOutlinedIcon
+                  sx={{ color: "action.active", mr: 1, my: 2 }}
+                />
+                <TextField
+                  type="password"
+                  label="Password"
+                  name="password"
+                  value={user.password}
+                  onChange={(e) =>
+                    setUser({ ...user, [e.target.name]: e.target.value })
+                  }
+                  variant="outlined"
+                  className="w-4/5"
+                />
+              </div>
+            </>
+          )}
           <div className="my-8 flex justify-center">
             <button
               onClick={handleSignup}

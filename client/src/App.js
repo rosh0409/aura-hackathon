@@ -7,7 +7,7 @@ import Home from "./Home";
 import Signup from "./pages/Signup_";
 import Login from "./pages/Login_";
 import Dashboard from "./components/Dashboard";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import PageNotFound from "./pages/PageNotFound";
 import AddBudget from "./pages/AddBudget";
 import AddIncome from "./pages/AddIncome";
@@ -20,7 +20,6 @@ function App() {
     <>
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<Home />} />
           <Route path="/" element={<Home />} />
           {isLoggedIn && <Route exact path="/dash/*" element={<Dashboard />} />}
           <Route exact path={"/signup"} element={<Signup />} />
